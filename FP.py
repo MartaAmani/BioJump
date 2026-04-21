@@ -91,17 +91,19 @@ def dietary_preference():
     return preferences
 
 
-def load_data(self):
+def load_data():
     """
     Load data from CSV file
     """
 
+    additives_db = {}
+
     # Load additives
     with open('additives.csv', mode='r', newline='', encoding='utf-8') as f:
-        reader = csv.reader(f)
+        reader = csv.DictReader(f)
         for row in reader:
             name = row["additive"].strip().lower()
-            self.nova_db[name] = {
+            additives_db[name] = {
             "category":   row["category"].strip(),
             "nova_group": int(row["nova_group"].strip()),
             "risk_level": row["risk_level"].strip(),
@@ -110,6 +112,7 @@ def load_data(self):
 
     # Load carbon foot print
 
+    return additives_db
 
 
 def main():
