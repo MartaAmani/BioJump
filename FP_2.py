@@ -41,8 +41,13 @@ def choose_recipe(data, search_term):
     for recipe in data:
         name = recipe.get("Recipe_Name", "")
         ingredients = recipe.get("Ingredient_List", "")
-        if name.upper() == search and ingredients.strip():
-            matching.append(recipe)
+        if name.upper() == search_upper and ingredients.strip():
+            exact_match.append(recipe)
+
+    if len(exact_match) == 1:
+        return exact_match[0]
+    if len(exact_match) > 1:
+        
 
     if not matching:
         print(f'No exact match found for "{recipe_name}".')
