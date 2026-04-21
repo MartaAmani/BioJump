@@ -68,12 +68,26 @@ def get_ingredients(recipe_name):
 
 def dietary_preference():
     print("\nDietary filters (optional). Type 'y' for yes, anything else for no.")
-    vegan = input("Vegan? (y/n): ").lower() == 'y'
-    vegetarian = input("Vegetarian? (y/n): ").lower() == 'y'
-    gluten_free = input("Gluten-free? (y/n): ").lower() == 'y'
-    nut_free = input("Nut-free? (y/n): ").lower() == 'y'
+    preferences = {
+        "vegan": {
+            "enabled": input("Vegan? (y/n): ").lower() == "y",
+            "forbidden": ["meat", "chicken", "fish", "egg", "milk", "cheese", "butter", "yogurt", "honey"],
+        },
+        "vegetarian": {
+            "enabled": input("Vegetarian? (y/n): ").lower() == "y",
+            "forbidden": ["meat", "chicken", "fish", "gelatin"],
+        },
+        "gluten_free": {
+            "enabled": input("Gluten-free? (y/n): ").lower() == "y",
+            "forbidden": ["wheat", "barley", "rye", "malt"],
+        },
+        "nut_free": {
+            "enabled": input("Nut-free? (y/n): ").lower() == "y",
+            "forbidden": ["almond", "walnut", "pecan", "cashew", "hazelnut", "peanut"],
+        },
+    }
 
-    return { "vegan": vegan, "vegetarian": vegetarian, "gluten_free": gluten_free,"nut_free": nut_free, }
+    return preferences
 
 def main():
     while True:
