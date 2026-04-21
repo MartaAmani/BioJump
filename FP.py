@@ -66,7 +66,7 @@ def get_ingredients(recipe_name):
     return matching[0] # return only one to delete duplicates
 
 
-def
+def dietary_preference()
 
 
 def main():
