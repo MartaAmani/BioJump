@@ -30,15 +30,14 @@ def get_ingredients(recipe_name):
         return None
 
     data = response.json() # parse a JSON-formatted API response into a native Python data structure
-
-    if len(data) == 0:
-        print(f"No recipes found for '{recipe_name}'")
+    if not data:
         return None
 
-    search = recipe_name.upper() # all the names are uppercase
+def choose_recipe(data, search_term):
+    search_upper = recipe_name.upper() # all the names are uppercase
 
-    # Match the input name with one name in the list
-    matching = []
+    # Exact mathc Match the input name with one name in the list
+    exact_match = []
     for recipe in data:
         name = recipe.get("Recipe_Name", "")
         ingredients = recipe.get("Ingredient_List", "")
