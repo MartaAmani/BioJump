@@ -1,0 +1,79 @@
+additive,category,nova_group,risk_level,source
+high fructose corn syrup,sweetener,4,high,Monteiro 2019
+corn syrup,sweetener,4,high,Monteiro 2019
+corn syrup solids,sweetener,4,high,Monteiro 2019
+invert sugar syrup,sweetener,4,medium,Monteiro 2019
+aspartame,sweetener,4,high,Monteiro 2019
+acesulfame potassium,sweetener,4,high,Monteiro 2019
+sucralose,sweetener,4,high,Monteiro 2019
+saccharin,sweetener,4,high,Monteiro 2019
+neotame,sweetener,4,medium,Monteiro 2019
+stevia extract,sweetener,4,low,Monteiro 2019
+maltodextrin,filler,4,high,Monteiro 2019
+dextrose,filler,4,medium,Monteiro 2019
+modified starch,thickener,4,high,Monteiro 2019
+xanthan gum,thickener,4,medium,Monteiro 2019
+carrageenan,thickener,4,high,Monteiro 2019
+guar gum,thickener,4,low,Monteiro 2019
+locust bean gum,thickener,4,low,Monteiro 2019
+gellan gum,thickener,4,medium,Monteiro 2019
+pectin,thickener,4,low,Monteiro 2019
+cellulose gel,thickener,4,medium,FDA
+methylcellulose,thickener,4,medium,FDA
+hydroxypropyl methylcellulose,thickener,4,medium,FDA
+soy lecithin,emulsifier,4,medium,Monteiro 2019
+sunflower lecithin,emulsifier,4,low,Monteiro 2019
+mono and diglycerides,emulsifier,4,high,Monteiro 2019
+polysorbate 80,emulsifier,4,high,Monteiro 2019
+polysorbate 60,emulsifier,4,high,Monteiro 2019
+sodium stearoyl lactylate,emulsifier,4,medium,Monteiro 2019
+datem,emulsifier,4,medium,Monteiro 2019
+acetylated monoglycerides,emulsifier,4,medium,Monteiro 2019
+artificial flavor,flavoring,4,high,Monteiro 2019
+natural flavor,flavoring,4,medium,Monteiro 2019
+hydrolyzed vegetable protein,flavoring,4,high,Monteiro 2019
+hydrolyzed soy protein,flavoring,4,high,Monteiro 2019
+yeast extract,flavoring,4,medium,Monteiro 2019
+monosodium glutamate,flavor enhancer,4,high,Monteiro 2019
+msg,flavor enhancer,4,high,Monteiro 2019
+disodium inosinate,flavor enhancer,4,high,Monteiro 2019
+disodium guanylate,flavor enhancer,4,high,Monteiro 2019
+disodium ribonucleotides,flavor enhancer,4,high,Monteiro 2019
+sodium benzoate,preservative,4,high,Monteiro 2019
+potassium sorbate,preservative,4,high,Monteiro 2019
+calcium propionate,preservative,4,medium,Monteiro 2019
+sodium nitrate,preservative,4,high,Monteiro 2019
+sodium nitrite,preservative,4,high,Monteiro 2019
+bha,preservative,4,high,FDA
+bht,preservative,4,high,FDA
+tbhq,preservative,4,high,FDA
+sodium erythorbate,preservative,4,medium,FDA
+calcium disodium edta,preservative,4,medium,FDA
+artificial color,color,4,high,Monteiro 2019
+red 40,color,4,high,FDA
+red 3,color,4,high,FDA
+yellow 5,color,4,high,FDA
+yellow 6,color,4,high,FDA
+blue 1,color,4,high,FDA
+blue 2,color,4,high,FDA
+green 3,color,4,medium,FDA
+caramel color,color,4,high,Monteiro 2019
+titanium dioxide,color,4,high,FDA
+partially hydrogenated oil,trans fat,4,high,FDA
+hydrogenated vegetable oil,trans fat,4,high,FDA
+interesterified fat,trans fat,4,high,FDA
+sodium phosphate,acidity regulator,4,medium,FDA
+disodium phosphate,acidity regulator,4,medium,FDA
+sodium acid pyrophosphate,acidity regulator,4,medium,FDA
+calcium chloride,acidity regulator,4,low,FDA
+sodium citrate,acidity regulator,4,low,FDA
+fumaric acid,acidity regulator,4,medium,FDA
+sodium aluminum sulfate,acidity regulator,4,medium,FDA
+silicon dioxide,anti-caking,4,medium,FDA
+calcium silicate,anti-caking,4,low,FDA
+magnesium stearate,anti-caking,4,medium,FDA
+sodium aluminosilicate,anti-caking,4,medium,FDA
+dimethyl polysiloxane,anti-foaming,4,medium,FDA
+propylene glycol,humectant,4,high,FDA
+glycerol,humectant,4,low,FDA
+sorbitol,humectant,4,medium,FDA
