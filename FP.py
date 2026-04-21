@@ -1,6 +1,7 @@
 """FINAL PROJECT - HUDS Nutrition Scorer - Marta Amani"""
 
 import requests
+import csv
 
 def get_ingredients(recipe_name):
     print('Searching ingredients from the Harvard Univeristy Dining Service Website\n')
@@ -88,6 +89,28 @@ def dietary_preference():
     }
 
     return preferences
+
+
+def load_data(self):
+    """
+    Load data from CSV file
+    """
+
+    # Load additives
+    with open('additives.csv', mode='r', newline='', encoding='utf-8') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            name = row["additive"].strip().lower()
+            self.nova_db[name] = {
+            "category":   row["category"].strip(),
+            "nova_group": int(row["nova_group"].strip()),
+            "risk_level": row["risk_level"].strip(),
+            "source":     row["source"].strip(),
+            }
+
+    # Load carbon foot print
+
+
 
 def main():
     while True:
