@@ -120,7 +120,7 @@ def load_data():
     # Load carbon foot print
 
     return additives_db
-# Step 5: ingredient parser
+# Step 5: Ingredients list
 
 # Step 6: Processed food score
 
