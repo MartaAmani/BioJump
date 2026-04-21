@@ -66,8 +66,14 @@ def get_ingredients(recipe_name):
     return matching[0] # return only one to delete duplicates
 
 
-def dietary_preference()
+def dietary_preference():
+    print("\nDietary filters (optional). Type 'y' for yes, anything else for no.")
+    vegan = input("Vegan? (y/n): ").lower() == 'y'
+    vegetarian = input("Vegetarian? (y/n): ").lower() == 'y'
+    gluten_free = input("Gluten-free? (y/n): ").lower() == 'y'
+    nut_free = input("Nut-free? (y/n): ").lower() == 'y'
 
+    return { "vegan": vegan, "vegetarian": vegetarian, "gluten_free": gluten_free,"nut_free": nut_free, }
 
 def main():
     while True:
