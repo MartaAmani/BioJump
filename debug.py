@@ -4,7 +4,7 @@ def get_all_recipes():
     url = "https://go.apis.huit.harvard.edu/ats/dining/v3/recipes"
     headers = {
         "User-Agent": "FP Project Cs 32",
-        "X-Api-Key": "reC5wGF3ZYFyQQodPHKXwelidEpVnir8EJUD6DDadGnT6J7S"  # paste your Client ID here
+        "X-Api-Key": "reC5wGF3ZYFyQQodPHKXwelidEpVnir8EJUD6DDadGnT6J7S"  # Client ID 
     }
 
     response = requests.get(url, headers=headers)
