@@ -112,9 +112,7 @@ def load_data():
             name = row["additive"].strip().lower()
             additives_db[name] = {
             "category":   row["category"].strip(),
-            "nova_group": int(row["nova_group"].strip()),
-            "risk_level": row["risk_level"].strip(),
-            "source":     row["source"].strip(),
+            "description": row["description"].strip(),
             }
 
     # Load carbon foot print
