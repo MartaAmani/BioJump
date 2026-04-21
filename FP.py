@@ -3,6 +3,9 @@
 import requests
 import csv
 
+
+# Part 1 and Part 2:  API and Recipe Search
+
 def get_ingredients(recipe_name):
     print('Searching ingredients from the Harvard Univeristy Dining Service Website\n')
 
@@ -67,6 +70,8 @@ def get_ingredients(recipe_name):
     return matching[0] # return only one to delete duplicates
 
 
+# Part 3: Dietary Preference Collector
+
 def dietary_preference():
     print("\nDietary filters (optional). Type 'y' for yes, anything else for no.")
     preferences = {
@@ -91,6 +96,8 @@ def dietary_preference():
     return preferences
 
 
+# Part 4: CSV Loader
+
 def load_data():
     """
     Load data from CSV file
@@ -113,7 +120,15 @@ def load_data():
     # Load carbon foot print
 
     return additives_db
+# Step 5: Increadient parser
+# Step 6: Processed food score
+# Step 7: Nutrition socre/info + Pill display
+# Step 8: Carbon footprint score
+# Step 9: Dietary flag checker
+# Step 10: Logisitc regression?
+# Step 11: Report Card
 
+# Step 0: Main Loop
 
 def main():
     while True:
