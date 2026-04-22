@@ -121,14 +121,18 @@ def load_data():
     return additives_db
 
 # Step 5: Processed food score
-def score():
+def score(recipe, additives_db):
     # grab the list of the ingredients
-    recipe = get_ingredients(search)
     raw_ingredients = recipe.get("Ingredient_List", "")
     # compare each ingredeint with the additives disctonary to see if any of the ingredient is present
+
     # for each mathced additive reduce the score by 5 points (max score is 100)
-    # create a list of the additive present in the recipe and store them (we0ll print them later)
-    #
+    # create a list of the additive present in the recipe and store them (we'll print them later)
+    score = 100
+    additives_found=[]
+
+    for additive, info in additives_db.items():
+
 
 # Step 6: Nutrition socre/info + Pill display
 
@@ -159,6 +163,10 @@ def main():
             print(f"{'Calories:':<{max_len}} {recipe.get('Calories')}")
             print(f"{'Allergens:':<{max_len}} {recipe.get('Allergens').rstrip(', ')}")
             break
+
+        # create the score
+        score(recipe)
+
 
 if __name__ == "__main__":
     main()
