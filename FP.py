@@ -2,6 +2,7 @@
 
 import requests
 import csv
+import textwrap
 
 
 # Part 1 and Part 2:  API and Recipe Search
@@ -146,7 +147,7 @@ def main():
         max_len = len("Ingredients:")
         if recipe:
             print(f"{'Recipe:':<{max_len}} {recipe.get('Recipe_Name')}")
-            print(text.wrap.fill(recipe.get('Ingredient_List'), width=80, initial_indent="Ingredients: ", subsequent_indent=" "* 13))
+            print(textwrap.fill(recipe.get('Ingredient_List'), width=80, initial_indent="Ingredients: ",subsequent_indent=" " * 13))
             print(f"{'Calories:':<{max_len}} {recipe.get('Calories')}")
             print(f"{'Allergens:':<{max_len}} {recipe.get('Allergens')}")
             break
