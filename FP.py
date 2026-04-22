@@ -132,6 +132,7 @@ def score(recipe, additives_db):
     additives_found=[]
 
     for additive, info in additives_db.items():
+        if 
 
 
 # Step 6: Nutrition socre/info + Pill display
