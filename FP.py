@@ -137,7 +137,8 @@ def load_data():
 
 def main():
     while True:
-        search = input("Which recipe would you like to search? (or 'q' to quit): ").strip()
+        search = input("Which recipe would you like to search? (or 'q' to quit): ").strip() # we strip so that we can still look for a math
+                                                                                            # if the user added a space at the beginnig by accident
 
         if search.lower() == "q":
             print("Goodbye!")
