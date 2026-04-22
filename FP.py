@@ -132,8 +132,15 @@ def score(recipe, additives_db):
     additives_found=[]
 
     for additive, info in additives_db.items():
-        if 
-
+        if additive in raw_ingredients:
+            score = score - 5
+            additives_found.append({
+                "name":       additive,
+                "category":   info["category"],
+                "description": info["description"],
+            })
+    score = max(0, score) # the score cannot go below 0
+    return {}
 
 # Step 6: Nutrition socre/info + Pill display
 
