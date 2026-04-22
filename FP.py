@@ -144,8 +144,8 @@ def main():
 
         recipe = get_ingredients(search)
 
-        if recipe: # ALIGN SEE PSET 
-            print(f"Recipe:      {recipe.get('Recipe_Name'}")
+        if recipe:
+            print(f"Recipe:      {recipe.get('Recipe_Name')}")
             print(f"Ingredients: {recipe.get('Ingredient_List')}")
             print(f"Calories:    {recipe.get('Calories')}")
             print(f"Allergens:   {recipe.get('Allergens')}")
