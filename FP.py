@@ -7,6 +7,8 @@ import textwrap
 
 # Part 1 and Part 2:  API and Recipe Search
 
+stop_word_list = ["a", "an", "the", "and", "or", "of","with", "in", "on", "for", "to", "at"]
+
 def get_ingredients(recipe_name):
     print('Searching recipe from the Harvard Univeristy Dining Service Website\n')
 
