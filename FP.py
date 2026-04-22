@@ -137,7 +137,7 @@ def load_data():
 
 def main():
     while True:
-        search = input("Which recipe would you like to search? (or 'q' to quit): ")
+        search = input("Which recipe would you like to search? (or 'q' to quit): ").strip()
 
         if search.lower() == "q":
             print("Goodbye!")
