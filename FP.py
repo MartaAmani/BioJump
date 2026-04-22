@@ -119,19 +119,20 @@ def load_data():
     # Load carbon foot print
 
     return additives_db
-# Step 5: Ingredients list
 
-# Step 6: Processed food score
+# Step 5: Processed food score
+def score():
+    
 
-# Step 7: Nutrition socre/info + Pill display
+# Step 6: Nutrition socre/info + Pill display
 
-# Step 8: Carbon footprint score
+# Step 7: Carbon footprint score
 
-# Step 9: Dietary flag checker
+# Step 8: Dietary flag checker
 
-# Step 10: Logisitc regression?
+# Step 9: Logisitc regression?
 
-# Step 11: Report Card
+# Step 10: Report Card
 
 # Step 0: Main Loop
 
