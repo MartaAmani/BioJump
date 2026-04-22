@@ -146,6 +146,8 @@ def main():
         max_len = len("Ingredients:")
         if recipe:
             print(f"{'Recipe:':<{max_len}} {recipe.get('Recipe_Name')}")
+            ingredients = recipe.get('Ingredient_List')
+            wrapped = textwrap.fill(ingredients, width=width, initial_indent=f"{'Ingredients:':<{max_len}} ")
             print(f"{'Ingredients:':<{max_len}} {recipe.get('Ingredient_List')}")
             print(f"{'Calories:':<{max_len}} {recipe.get('Calories')}")
             print(f"{'Allergens:':<{max_len}} {recipe.get('Allergens')}")
