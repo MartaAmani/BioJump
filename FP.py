@@ -140,7 +140,10 @@ def score(recipe, additives_db):
                 "description": info["description"],
             })
     score = max(0, score) # the score cannot go below 0
-    return {}
+    return {
+        "score":           score,
+        "additives_found": additives_found,   # print these later
+    }
 
 # Step 6: Nutrition socre/info + Pill display
 
@@ -173,7 +176,7 @@ def main():
             break
 
         # create the score
-        score(recipe)
+        score = score(recipe, additives_db)
 
 
 if __name__ == "__main__":
