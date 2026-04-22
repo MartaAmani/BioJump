@@ -121,28 +121,29 @@ def load_data():
     return additives_db
 
 # Step 5: Processed food score
-def score(recipe, additives_db):
+def create_score(recipe, additives_db):
     # grab the list of the ingredients
-    raw_ingredients = recipe.get("Ingredient_List", "")
+    raw_ingredients = recipe.get("Ingredient_List", "") or ""
+    raw_ingredients = raw_ingredients.lower()
     # compare each ingredeint with the additives disctonary to see if any of the ingredient is present
 
     # for each mathced additive reduce the score by 5 points (max score is 100)
     # create a list of the additive present in the recipe and store them (we'll print them later)
-    score = 100
+    recipe_score = 100
     additives_found=[]
 
     for additive, info in additives_db.items():
         if additive in raw_ingredients:
-            score = score - 5
+            recipe_score = recipe_score - 5
             additives_found.append({
                 "name":       additive,
                 "category":   info["category"],
                 "description": info["description"],
             })
-    score = max(0, score) # the score cannot go below 0
+    recipe_score = max(0, recipe_score) # the score cannot go below 0
     return {
-        "score":           score,
-        "additives_found": additives_found,   # print these later
+        "score":           recipe_score,
+        "additives_found": additives_found,   # print these in main()
     }
 
 # Step 6: Nutrition socre/info + Pill display
@@ -158,10 +159,15 @@ def score(recipe, additives_db):
 # Step 0: Main Loop
 
 def main():
+
+    # Step 4
+    additives_db = load_data()
+
+    #prefereces = dietary_preference()
+
     while True:
         search = input("Which recipe would you like to search? (or 'q' to quit): ").strip() # we strip so that we can still look for a math
                                                                                             # if the user added a space at the beginnig by accident
-
         if search.lower() == "q":
             print("Goodbye!")
             break
@@ -173,11 +179,21 @@ def main():
             print(textwrap.fill(recipe.get('Ingredient_List').rstrip(',)'), width=80, initial_indent="Ingredients: ",subsequent_indent=" " * 13))
             print(f"{'Calories:':<{max_len}} {recipe.get('Calories')}")
             print(f"{'Allergens:':<{max_len}} {recipe.get('Allergens').rstrip(', ')}")
+
+            final_score = create_score(recipe, additives_db)
+            print(f"Score: {final_score['score']} / 100")
+
+
+            if final_score["additives_found"]:
+                print("\nAdditives found in this recipe:")
+                for item in final_score["additives_found"]:
+                    print(f"  - {item['name']:<35} "
+                          f"[{item['category']}]  "
+                          f"{item['description']}")
+            else:
+                print("No ultra-processed additives found!")
+
             break
-
-        # create the score
-        score = score(recipe, additives_db)
-
 
 if __name__ == "__main__":
     main()
