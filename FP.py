@@ -143,12 +143,12 @@ def main():
             break
 
         recipe = get_ingredients(search)
-
+        max_len = len("Ingredients:")
         if recipe:
-            print(f"Recipe:      {recipe.get('Recipe_Name')}")
-            print(f"Ingredients: {recipe.get('Ingredient_List')}")
-            print(f"Calories:    {recipe.get('Calories')}")
-            print(f"Allergens:   {recipe.get('Allergens')}")
+            print(f"{'Recipe:':<{max_len}} {recipe.get('Recipe_Name')}")
+            print(f"{'Ingredients:':<{max_len}} {recipe.get('Ingredient_List')}")
+            print(f"{'Calories:':<{max_len}} {recipe.get('Calories')}")
+            print(f"{'Allergens:':<{max_len}} {recipe.get('Allergens')}")
             break
 
 if __name__ == "__main__":
