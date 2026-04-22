@@ -147,9 +147,9 @@ def main():
         max_len = len("Ingredients:")
         if recipe:
             print(f"{'Recipe:':<{max_len}} {recipe.get('Recipe_Name')}")
-            print(textwrap.fill(recipe.get('Ingredient_List'), width=80, initial_indent="Ingredients: ",subsequent_indent=" " * 13))
+            print(textwrap.fill(recipe.get('Ingredient_List').rstrip(',)'), width=80, initial_indent="Ingredients: ",subsequent_indent=" " * 13))
             print(f"{'Calories:':<{max_len}} {recipe.get('Calories')}")
-            print(f"{'Allergens:':<{max_len}} {recipe.get('Allergens')}")
+            print(f"{'Allergens:':<{max_len}} {recipe.get('Allergens').rstrip(',)')}")
             break
 
 if __name__ == "__main__":
