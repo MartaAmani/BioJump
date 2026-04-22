@@ -187,9 +187,7 @@ def main():
             if final_score["additives_found"]:
                 print("\nAdditives found in this recipe:")
                 for item in final_score["additives_found"]:
-                    print(f"  - {item['name']:<35} "
-                          f"[{item['category']}]  "
-                          f"{item['description']}")
+                    print(f"  - {item['name']:<35} ": f"{item['description']}")
             else:
                 print("No ultra-processed additives found!")
 
