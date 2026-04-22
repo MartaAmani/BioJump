@@ -7,7 +7,7 @@ import csv
 # Part 1 and Part 2:  API and Recipe Search
 
 def get_ingredients(recipe_name):
-    print('Searching ingredients from the Harvard Univeristy Dining Service Website\n')
+    print('Searching recipe from the Harvard Univeristy Dining Service Website\n')
 
     # craft a request
     url = f"https://go.apis.huit.harvard.edu/ats/dining/v3/recipes"
