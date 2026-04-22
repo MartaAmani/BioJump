@@ -145,10 +145,10 @@ def main():
         recipe = get_ingredients(search)
 
         if recipe:
-            print(f"Recipe:      {recipe.get('Recipe_Name').strip}")
-            print(f"Ingredients: {recipe.get('Ingredient_List').strip}")
-            print(f"Calories:    {recipe.get('Calories').strip}")
-            print(f"Allergens:   {recipe.get('Allergens').strip}")
+            print(f"Recipe:      {recipe.get('Recipe_Name').strip()}")
+            print(f"Ingredients: {recipe.get('Ingredient_List').strip()}")
+            print(f"Calories:    {recipe.get('Calories').strip()}")
+            print(f"Allergens:   {recipe.get('Allergens').strip()}")
             break
 
 if __name__ == "__main__":
