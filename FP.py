@@ -79,7 +79,7 @@ def find_recipe(recipe_name, data):
     if exact:
         return exact[0]
 
-    # World overlap match between the input name and one name in the list
+    # Word overlap match between the input name and one name in the list
     partial = []
     for recipe in data:
         name = recipe.get("Recipe_Name", "")
@@ -87,15 +87,26 @@ def find_recipe(recipe_name, data):
         if partial_match(recipe_name, name) and ingredients.strip():
             partial.append(recipe)
 
-        if len(partial) == 1:
-            print(f'No exact match found for "{recipe_name}". The closest result is {partial[0].get("Recipe_Name")}')
-            return partial[0]
-        if len(partial) > 1:
-            print(f'No exact match found for "{recipe_name}". Here are similar recipes: ')
+    if len(partial) == 0:
+        print(f'No exact match found for "{recipe_name}".')
+        return None
 
-        for i, suggestion in enumerate(partial):
-            name = suggestion.get("Recipe_Name")
-            print(f"{i+1}. {name}")
+    if len(partial) == 1:
+        print(f'No exact match found for "{recipe_name}". The closest result is {partial[0].get("Recipe_Name")}')
+        return partial[0]
+
+    if len(partial) > 1:
+        print(f'No exact match found for "{recipe_name}". Here are similar recipes: ')
+
+    for i, suggestion in enumerate(partial):
+        print(f"{i+1}. {suggestion.get("Recipe_Name")}")
+    while True:
+        choice = input("\nEnter a number to select a recipe (or 0 to cancel): ").strip()
+        if choice == "0":
+            return None
+        if choice.isdigit() and 1 <= int(choice) <= len(partial):
+            return partial[int(choice) - 1]
+        print("Invalid choice, please try again.")
 
     print(f'No recipes found matching "{recipe_name}".')
     return None
