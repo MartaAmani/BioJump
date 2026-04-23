@@ -5,6 +5,7 @@ import csv
 import textwrap
 import re
 import string
+import Apy_key from API.py
 
 
 # Part 1 and Part 2:  API and Recipe Search
@@ -45,7 +46,7 @@ def connection(recipe_name):
     params = {"name": recipe_name}
     headers = {
         "User-Agent": "FP Project Cs 32",
-        "X-Api-Key":  "reC5wGF3ZYFyQQodPHKXwelidEpVnir8EJUD6DDadGnT6J7S"
+        "X-Api-Key":  Apy_key
     }
 
     response = requests.get(url, params=params, headers=headers)
