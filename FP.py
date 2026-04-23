@@ -235,10 +235,11 @@ def main():
         final_score = create_score(recipe, additives_db)
         print(f"Score: {final_score['score']} / 100")
 
+        num_additives = len(final_score["additives_found"])
         if final_score["additives_found"]:
-            print("\nAdditives found in this recipe:")
+            print(f"\nAdditive(s) found in this recipe = {num_additives}. Here are the details:")
             for item in final_score["additives_found"]:
-                print(f"  - {item['name']:}: {item['description']}")
+                print(f"  - {item['name']}: {item['description']}")
         else:
             print("No ultra-processed additives found!")
 
