@@ -29,7 +29,6 @@ def get_wordlist(text, remove_stopwords=True):
     else:
         return words
 
-
 def get_ingredients(recipe_name):
     print('Searching recipe from the Harvard Univeristy Dining Service Website\n')
 
