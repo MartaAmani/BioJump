@@ -211,25 +211,28 @@ def main():
         recipe = find_recipe(search, data)
         max_len = len("Ingredients:")
 
-        if recipe:
-            print(f"{'Recipe:':<{max_len}} {recipe.get('Recipe_Name')}")
-            ingredients_list = recipe.get('Ingredient_List') or ""
-            print(textwrap.fill(ingredients_list.rstrip(',)('), width=80, initial_indent="Ingredients: ",subsequent_indent=" " * 13))
-            print(f"{'Calories:':<{max_len}} {recipe.get('Calories')}")
-            allergens_list = recipe.get('Allergens') or ""
-            print(f"{'Allergens:':<{max_len}} {allergens_list.rstrip(',)(')}")
+        if not recipe:
+            continue # no recipe found
 
-            final_score = create_score(recipe, additives_db)
-            print(f"Score: {final_score['score']} / 100")
+        print(f"{'Recipe:':<{max_len}} {recipe.get('Recipe_Name')}")
+        ingredients_list = recipe.get('Ingredient_List') or ""
+        print(textwrap.fill(ingredients_list.rstrip(',)('), width=80, initial_indent="Ingredients: ",subsequent_indent=" " * 13))
+        print(f"{'Calories:':<{max_len}} {recipe.get('Calories')}")
+        allergens_list = recipe.get('Allergens') or ""
+        print(f"{'Allergens:':<{max_len}} {allergens_list.rstrip(',)(')}")
 
-            if final_score["additives_found"]:
-                print("\nAdditives found in this recipe:")
-                for item in final_score["additives_found"]:
-                    print(f"  - {item['name']:<35}: {item['description']}") # we align the itmes using <35 so that the description starts at the same column for all items
-            else:
-                print("No ultra-processed additives found!")
+        final_score = create_score(recipe, additives_db)
+        print(f"Score: {final_score['score']} / 100")
 
-            break
+        if final_score["additives_found"]:
+            print("\nAdditives found in this recipe:")
+            for item in final_score["additives_found"]:
+                print(f"  - {item['name']:<35}: {item['description']}") # we align the itmes using <35 so that the description starts at the same column for all items
+        else:
+            print("No ultra-processed additives found!")
+
+        print("\nType another recipe name to keep searching, or 'q' to quit.")
+
 
 if __name__ == "__main__":
     main()
