@@ -106,9 +106,9 @@ def find_recipe(recipe_name, data):
             return None
         if choice.isdigit():
             index = int(choice) - 1
-            return partial[int(choice) - 1]
+            if index in range(len(partial)):
+                return partial[index]
         return None
-        print("Invalid choice, please try again.")
 
 # Part 3: Dietary Preference Collector
 
