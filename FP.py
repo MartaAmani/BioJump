@@ -225,7 +225,7 @@ def main():
             if final_score["additives_found"]:
                 print("\nAdditives found in this recipe:")
                 for item in final_score["additives_found"]:
-                    print(f"  - {item['name']:<35}: {item['description']}")
+                    print(f"  - {item['name']:<35}: {item['description']}") # we align the itmes using <35 so that the description starts at the same column for all items
             else:
                 print("No ultra-processed additives found!")
 
