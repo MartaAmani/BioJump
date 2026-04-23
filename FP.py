@@ -83,14 +83,17 @@ def find_recipe(recipe_name, data):
     partial = []
     for recipe in data:
         name = recipe.get("Recipe_Name", "")
+        ingredients = recipe.get("Ingredient_List", "")
         if partial_match(recipe_name, name) and ingredients.strip():
             partial.append(recipe)
 
-        print(f'No exact match found for "{recipe_name}". Here are similar recipes: ')
-        # Suggest recipe that is close
-        for recipe in partial:
-            name = partial[i].get("Recipe_Name")
-            i+=i
+        if len(partial) == 1:
+            print(f'No exact match found for "{recipe_name}". The closest result is {partial[0].get("Recipe_Name")}')
+            return partial[0]
+        if len(partial) > 1:
+            print(f'No exact match found for "{recipe_name}". Here are similar recipes: ')
+        for suggestion in partial:
+            name = suggestion.get("Recipe_Name")
             print(f"  - {name}")
 
         print(f'No recipes found matching "{recipe_name}".')
