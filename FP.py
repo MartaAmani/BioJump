@@ -80,19 +80,15 @@ def get_ingredients(recipe_name):
         if partial_match(recipe_name, name) and ingredients.strip():
             partial.append(recipe)
 
-        print(f'No exact match found for "{recipe_name}". Did you mean one of these?')
+        print(f'No exact match found for "{recipe_name}". Here are similar recipes: ')
         # Suggest recipe that is close
         for recipe in partial:
-            print("Did you mean one of these?")
             name = partial[i].get("Recipe_Name")
+            i+=i
+            print(f"  - {name}")
 
-            print("Did you mean one of these?")
-            for name in close:
-                print(f"  - {name}")
-
+        print(f'No recipes found matching "{recipe_name}".')
         return None
-
-    return matching[0] # return only one to delete duplicates
 
 
 # Part 3: Dietary Preference Collector
