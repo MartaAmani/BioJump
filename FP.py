@@ -9,7 +9,24 @@ import textwrap
 
 stop_word_list = ["a", "an", "the", "and", "or", "of","with", "in", "on", "for", "to", "at"]
 
-def get_word_list(text):
+def get_wordlist(text, remove_stopwords=True):
+    """
+    Convert recipe names into a list of lowercase words.
+    """
+
+    text = text.lower()
+
+    # Extract words from text
+    pattern = '^[{0}]+|[{0}]+$'.format(punctuation) # remove punctuation only from the beginning or end
+    words = [re.sub(pattern, '', w) for w in text.split()] # re.sub(pattern, '', w) removes punctuation from the start
+                                                        # and end of each word coming from .split()
+
+    # By default, remove stopwords from wordlist
+    if remove_stopwords:
+        return [w for w in words if w not in stop_word_list]
+    else:
+        return words
+
 
 def get_ingredients(recipe_name):
     print('Searching recipe from the Harvard Univeristy Dining Service Website\n')
