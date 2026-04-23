@@ -209,11 +209,11 @@ def main():
             continue # API failed
 
         recipe = find_recipe(search, data)
-        max_len = len("Ingredients:")
 
         if not recipe:
             continue # no recipe found
 
+        max_len = len("Ingredients:")
         print(f"{'Recipe:':<{max_len}} {recipe.get('Recipe_Name')}")
         ingredients_list = recipe.get('Ingredient_List') or ""
         print(textwrap.fill(ingredients_list.rstrip(',)('), width=80, initial_indent="Ingredients: ",subsequent_indent=" " * 13))
