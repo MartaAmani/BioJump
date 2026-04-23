@@ -215,7 +215,12 @@ def main():
             print("Goodbye!")
             break
 
-        recipe = get_ingredients(search)
+        data = connection(search)
+
+        if not data:
+            continue # API failed
+
+        recipe = find_recipe(search, recipe)
         max_len = len("Ingredients:")
         if recipe:
             print(f"{'Recipe:':<{max_len}} {recipe.get('Recipe_Name')}")
