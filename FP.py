@@ -5,7 +5,8 @@ import csv
 import textwrap
 import re
 import string
-import Apy_key from API.py
+install pip
+pip install python-dotenv
 
 
 # Part 1 and Part 2:  API and Recipe Search
