@@ -227,10 +227,10 @@ def main():
         max_len = len("Ingredients:")
         print(f"{'Recipe:':<{max_len}} {recipe.get('Recipe_Name')}")
         ingredients_list = recipe.get('Ingredient_List') or "N/A"
-        print(textwrap.fill(ingredients_list.rstrip(',)('), width=80, initial_indent="Ingredients: ",subsequent_indent=" " * 13))
+        print(textwrap.fill(ingredients_list.strip(" \t\n,)( "), width=80, initial_indent="Ingredients: ",subsequent_indent=" " * 13))
         print(f"{'Calories:':<{max_len}} {recipe.get('Calories')}")
         allergens_list = recipe.get('Allergens') or "N/A"
-        print(f"{'Allergens:':<{max_len}} {allergens_list.rstrip(',)(')}")
+        print(f"{'Allergens:':<{max_len}} {allergens_list.strip(" \t\n,)( ")}")
 
         final_score = create_score(recipe, additives_db)
         print(f"Score: {final_score['score']} / 100")
@@ -238,7 +238,7 @@ def main():
         if final_score["additives_found"]:
             print("\nAdditives found in this recipe:")
             for item in final_score["additives_found"]:
-                print(f"  - {item['name']:<35}: {item['description']}") # we align the itmes using <35 so that the description starts at the same column for all items
+                print(f"  - {item['name']:}: {item['description']}")
         else:
             print("No ultra-processed additives found!")
 
