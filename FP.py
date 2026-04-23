@@ -35,7 +35,7 @@ def partial_match(search, recipe_name):
     # True if at least one search word is found in the recipe word list
     return any(word in recipe_words for word in search_words)
 
-def get_ingredients(recipe_name):
+def connection(recipe_name):
     """Fetch recipe data from HUDS API and """
 
     print('Searching recipe from the Harvard University Dining Service\n')
@@ -57,6 +57,7 @@ def get_ingredients(recipe_name):
         return None
 
     data = response.json()
+
     if len(data) == 0:
         print(f"No recipes found for '{recipe_name}'")
         return None
@@ -64,7 +65,7 @@ def get_ingredients(recipe_name):
     return data
 
 def find_recipe(recipe_name, data):
-
+    ''' Search a list of recipe dicts for the best match to 'search'.'''
     search = recipe_name.upper() # all the names are uppercase
 
     # Exact match between the input name and one name in the list
@@ -92,7 +93,7 @@ def find_recipe(recipe_name, data):
             print(f"  - {name}")
 
         print(f'No recipes found matching "{recipe_name}".')
-        return None
+    return None
 
 
 # Part 3: Dietary Preference Collector
