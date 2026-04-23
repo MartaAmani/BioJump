@@ -10,7 +10,7 @@ import string
 # Part 1 and Part 2:  API and Recipe Search
 
 stop_word_list = ["a", "an", "the", "and", "or", "of","with", "in", "on", "for", "to", "at"]
-punctuation = ('*', '', '.', '-')
+punctuation = string.punctuation.replace('*', '')
 
 def get_wordlist(text, remove_stopwords=True):
     """Convert text into a list of clean lowercase words."""
@@ -18,7 +18,7 @@ def get_wordlist(text, remove_stopwords=True):
     text = text.lower()
 
     # Extract words from text
-    pattern = '^[{0}]+|[{0}]+$'.format(re.string(punctuation)) # remove punctuation only from the beginning or end
+    pattern = '^[{0}]+|[{0}]+$'.format(punctuation) # remove punctuation only from the beginning or end
     words = [re.sub(pattern, '', w) for w in text.split()] # re.sub(pattern, '', w) removes punctuation from the start
                                                         # and end of each word coming from .split()
 
@@ -28,21 +28,21 @@ def get_wordlist(text, remove_stopwords=True):
     else:
         return words
 
+
 def partial_match(search, recipe_name):
     """Return True if the search appears in any recipe name"""
     search_words = get_wordlist(search)
     recipe_words = get_wordlist(recipe_name)
+    return any(word in recipe_words for word in search_words) # True if at least one search word is found in the recipe word list
 
-    # True if at least one search word is found in the recipe word list
-    return any(word in recipe_words for word in search_words)
 
 def connection(recipe_name):
     """Fetch recipe data from HUDS API and """
 
     print('Searching recipe from the Harvard University Dining Service\n')
 
-    url     = "https://go.apis.huit.harvard.edu/ats/dining/v3/recipes"
-    params  = {"name": recipe_name}
+    url = "https://go.apis.huit.harvard.edu/ats/dining/v3/recipes"
+    params = {"name": recipe_name}
     headers = {
         "User-Agent": "FP Project Cs 32",
         "X-Api-Key":  "reC5wGF3ZYFyQQodPHKXwelidEpVnir8EJUD6DDadGnT6J7S"
