@@ -92,9 +92,11 @@ def find_recipe(recipe_name, data):
             return partial[0]
         if len(partial) > 1:
             print(f'No exact match found for "{recipe_name}". Here are similar recipes: ')
-        for suggestion in partial:
+
+        for i, suggestion in partial:
             name = suggestion.get("Recipe_Name")
-            print(f"  - {name}")
+            i+=i
+            print(f"{i+1}. {name}")
 
         print(f'No recipes found matching "{recipe_name}".')
     return None
