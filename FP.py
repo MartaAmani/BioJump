@@ -81,11 +81,14 @@ def find_recipe(recipe_name, data):
 
     # Word overlap match between the input name and one name in the list
     partial = []
+    seen = set() # to avoid duplicates in the partial match list
     for recipe in data:
         name = recipe.get("Recipe_Name", "")
         ingredients = recipe.get("Ingredient_List", "")
         if partial_match(recipe_name, name) and ingredients.strip():
-            partial.append(recipe)
+            if name not in seen:
+                seen.add(name)
+                partial.append(recipe)
 
     if len(partial) == 0:
         print(f'No exact match found for "{recipe_name}".')
