@@ -214,10 +214,10 @@ def main():
         if recipe:
             print(f"{'Recipe:':<{max_len}} {recipe.get('Recipe_Name')}")
             ingredients_list = recipe.get('Ingredient_List') or ""
-            print(textwrap.fill(ingredients_list.rstrip(',)'), width=80, initial_indent="Ingredients: ",subsequent_indent=" " * 13))
+            print(textwrap.fill(ingredients_list.rstrip(',)('), width=80, initial_indent="Ingredients: ",subsequent_indent=" " * 13))
             print(f"{'Calories:':<{max_len}} {recipe.get('Calories')}")
             allergens_list = recipe.get('Allergens') or ""
-            print(f"{'Allergens:':<{max_len}} {allergens_list.rstrip(', ')}")
+            print(f"{'Allergens:':<{max_len}} {allergens_list.rstrip(',)(')}")
 
             final_score = create_score(recipe, additives_db)
             print(f"Score: {final_score['score']} / 100")
