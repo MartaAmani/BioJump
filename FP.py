@@ -61,6 +61,10 @@ def get_ingredients(recipe_name):
         print(f"No recipes found for '{recipe_name}'")
         return None
 
+    return data
+
+def find_recipe(recipe_name, data):
+
     search = recipe_name.upper() # all the names are uppercase
 
     # Exact match between the input name and one name in the list
