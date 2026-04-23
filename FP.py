@@ -9,35 +9,10 @@ import os
 from dotenv import load_dotenv
 
 
-# Part 1 and Part 2:  API and Recipe Search
 
-stop_word_list = ["a", "an", "the", "and", "or", "of","with", "in", "on", "for", "to", "at"]
-punctuation = string.punctuation.replace('*', '')
+# Part 1: API conection
 
-def get_wordlist(text, remove_stopwords=True):
-    """Convert text into a list of clean lowercase words."""
-
-    text = text.lower()
-
-    # Extract words from text
-    pattern = '^[{0}]+|[{0}]+$'.format(punctuation) # remove punctuation only from the beginning or end
-    words = [re.sub(pattern, '', w) for w in text.split()] # re.sub(pattern, '', w) removes punctuation from the start
-                                                        # and end of each word coming from .split()
-
-    # By default, remove stopwords from wordlist
-    if remove_stopwords:
-        return [w for w in words if w not in stop_word_list]
-    else:
-        return words
-
-
-def partial_match(search, recipe_name):
-    """Return True if the search appears in any recipe name"""
-    search_words = get_wordlist(search)
-    recipe_words = get_wordlist(recipe_name)
-    return any(word in recipe_words for word in search_words) # True if at least one search word is found in the recipe word list
-
-
+load_dotenv()
 def connection(recipe_name):
     """Fetch recipe data from HUDS API and """
 
@@ -66,6 +41,34 @@ def connection(recipe_name):
         return None
 
     return data
+
+# Part 2:  Recipe Search and match
+
+stop_word_list = ["a", "an", "the", "and", "or", "of","with", "in", "on", "for", "to", "at"]
+punctuation = string.punctuation.replace('*', '')
+
+def get_wordlist(text, remove_stopwords=True):
+    """Convert text into a list of clean lowercase words."""
+
+    text = text.lower()
+
+    # Extract words from text
+    pattern = '^[{0}]+|[{0}]+$'.format(punctuation) # remove punctuation only from the beginning or end
+    words = [re.sub(pattern, '', w) for w in text.split()] # re.sub(pattern, '', w) removes punctuation from the start
+                                                        # and end of each word coming from .split()
+
+    # By default, remove stopwords from wordlist
+    if remove_stopwords:
+        return [w for w in words if w not in stop_word_list]
+    else:
+        return words
+
+def partial_match(search, recipe_name):
+    """Return True if the search appears in any recipe name"""
+    search_words = get_wordlist(search)
+    recipe_words = get_wordlist(recipe_name)
+    return any(word in recipe_words for word in search_words) # True if at least one search word is found in the recipe word list
+
 
 def find_recipe(recipe_name, data):
     ''' Search a list of recipe dicts for the best match to 'search'.'''
