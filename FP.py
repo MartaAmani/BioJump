@@ -171,7 +171,25 @@ def create_score(recipe, additives_db):
 
 # Step 6: Nutrition socre/info + Pill display
 
-# Step 7: Carbon footprint score
+# Step 7: Create a hisotry of the recipes and compare them
+class Recipe:
+    def __init__(self, data, nova_result, nutr_result):
+        self.name        = data.get("Recipe_Name")
+        self.nova_score  = nova_result["score"]
+        self.nutr_score  = nutr_result["score"]
+        self.additives   = nova_result["additives_found"]
+
+    def __str__(self):
+        return f"{self.name}  |  NOVA: {self.nova_score}  |  Nutrition: {self.nutr_score}"
+
+# Then you could do:
+history = []
+history.append(Recipe(recipe, nova_result, nutr_result))
+history.append(Recipe(recipe2, nova_result2, nutr_result2))
+
+# And compare them:
+for r in history:
+    print(r)
 
 # Step 8: Dietary flag checker
 
