@@ -65,13 +65,16 @@ def get_ingredients(recipe_name):
     search = recipe_name.upper() # all the names are uppercase
 
     # Match the input name with one name in the list
-    matching = []
+    exact = []
     for recipe in data:
         name = recipe.get("Recipe_Name", "")
         ingredients = recipe.get("Ingredient_List", "")
         if name.upper() == search and ingredients.strip():
-            matching.append(recipe)
+            exact.append(recipe)
+    if exact:
+        return exact[0]
 
+    partial = []
     if not matching:
         print(f'No exact match found for "{recipe_name}".')
         # Suggest recipe that is close
