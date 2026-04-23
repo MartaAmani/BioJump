@@ -147,8 +147,6 @@ def load_data():
             "description": row["description"].strip(),
             }
 
-    # Load carbon foot print
-
     return additives_db
 
 # Step 5: Processed food score
@@ -161,7 +159,7 @@ def create_score(recipe, additives_db):
     # for each mathced additive reduce the score by 5 points (max score is 100)
     # create a list of the additive present in the recipe and store them (we'll print them later)
     recipe_score = 100
-    additives_found=[]
+    additives_found = []
 
     for additive, info in additives_db.items():
         if additive in raw_ingredients:
@@ -171,10 +169,12 @@ def create_score(recipe, additives_db):
                 "category":   info["category"],
                 "description": info["description"],
             })
+
     recipe_score = max(0, recipe_score) # the score cannot go below 0
+
     return {
         "score":           recipe_score,
-        "additives_found": additives_found,   # print these in main()
+        "additives_found": additives_found,
     }
 
 # Step 6: Nutrition socre/info + Pill display
