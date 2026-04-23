@@ -4,6 +4,7 @@ import requests
 import csv
 import textwrap
 import re
+import string
 
 
 # Part 1 and Part 2:  API and Recipe Search
@@ -17,7 +18,7 @@ def get_wordlist(text, remove_stopwords=True):
     text = text.lower()
 
     # Extract words from text
-    pattern = '^[{0}]+|[{0}]+$'.format(re.escape(punctuation)) # remove punctuation only from the beginning or end
+    pattern = '^[{0}]+|[{0}]+$'.format(re.string(punctuation)) # remove punctuation only from the beginning or end
     words = [re.sub(pattern, '', w) for w in text.split()] # re.sub(pattern, '', w) removes punctuation from the start
                                                         # and end of each word coming from .split()
 
