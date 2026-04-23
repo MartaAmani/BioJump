@@ -47,7 +47,7 @@ def connection(recipe_name):
     params = {"name": recipe_name}
     headers = {
         "User-Agent": "FP Project Cs 32",
-        "X-Api-Key":  Apy_key
+        "X-Api-Key":  os.getenv("API_KEY")
     }
 
     response = requests.get(url, params=params, headers=headers)
