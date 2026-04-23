@@ -12,9 +12,7 @@ stop_word_list = ["a", "an", "the", "and", "or", "of","with", "in", "on", "for",
 punctuation = ('*', '', '.', '-')
 
 def get_wordlist(text, remove_stopwords=True):
-    """
-    Convert recipe names into a list of lowercase words.
-    """
+    """Convert text into a list of clean lowercase words."""
 
     text = text.lower()
 
@@ -30,6 +28,7 @@ def get_wordlist(text, remove_stopwords=True):
         return words
 
 def partial_match(search, recipe_name):
+    """Return True if the search appears in any recipe name"""
     search_words = get_wordlist(search)
     recipe_words = get_wordlist(recipe_name)
 
@@ -37,11 +36,34 @@ def partial_match(search, recipe_name):
     return any(word in recipe_words for word in search_words)
 
 def get_ingredients(recipe_name):
+    """Fetch recipe data from HUDS API and """
 
+    print('Searching recipe from the Harvard University Dining Service\n')
+
+    url     = "https://go.apis.huit.harvard.edu/ats/dining/v3/recipes"
+    params  = {"name": recipe_name}
+    headers = {
+        "User-Agent": "FP Project Cs 32",
+        "X-Api-Key":  "reC5wGF3ZYFyQQodPHKXwelidEpVnir8EJUD6DDadGnT6J7S"
+    }
+
+    response = requests.get(url, params=params, headers=headers)
+
+    if response.status_code != 200:
+        print("Error: bad response from server")
+        return None
+    if not response.text.strip():
+        print("Error: empty response")
+        return None
+
+    data = response.json()
+    if len(data) == 0:
+        print(f"No recipes found for '{recipe_name}'")
+        return None
 
     search = recipe_name.upper() # all the names are uppercase
 
-    # Match the input name with one name in the list
+    # Exact match between the input name and one name in the list
     exact = []
     for recipe in data:
         name = recipe.get("Recipe_Name", "")
@@ -51,24 +73,19 @@ def get_ingredients(recipe_name):
     if exact:
         return exact[0]
 
+    # World overlap match between the input name and one name in the list
     partial = []
     for recipe in data:
         name = recipe.get("Recipe_Name", "")
-        if words_match(recipe_name, name) and ingredients.strip():
+        if partial_match(recipe_name, name) and ingredients.strip():
             partial.append(recipe)
 
-    if not matching:
-        print(f'No exact match found for "{recipe_name}".')
+        print(f'No exact match found for "{recipe_name}". Did you mean one of these?')
         # Suggest recipe that is close
-        close = []
-        seen = set()
-        for recipe in data:
-            name = recipe.get("Recipe_Name")
-            words = name.upper().split()
-            if words[0] == search and name not in seen:
-                close.append(name)
-                seen.add(name)
-        if close:
+        for recipe in partial:
+            print("Did you mean one of these?")
+            name = partial[i].get("Recipe_Name")
+
             print("Did you mean one of these?")
             for name in close:
                 print(f"  - {name}")
