@@ -104,13 +104,11 @@ def find_recipe(recipe_name, data):
         choice = input("\nEnter a number to select a recipe (or 0 to cancel): ").strip()
         if choice == "0":
             return None
-        if choice.isdigit() and 1 <= int(choice) <= len(partial):
+        if choice.isdigit():
+            index = int(choice) - 1
             return partial[int(choice) - 1]
+        return None
         print("Invalid choice, please try again.")
-
-    print(f'No recipes found matching "{recipe_name}".')
-    return None
-
 
 # Part 3: Dietary Preference Collector
 
