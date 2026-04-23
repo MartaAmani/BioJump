@@ -29,6 +29,13 @@ def get_wordlist(text, remove_stopwords=True):
     else:
         return words
 
+def partial_match(search, recipe_name):
+    search_words = get_wordlist(search)
+    recipe_words = get_wordlist(recipe_name)
+
+    # True if at least one search word is found in the recipe word list
+    return any(word in recipe_words for word in search_words)
+
 def get_ingredients(recipe_name):
     print('Searching recipe from the Harvard Univeristy Dining Service Website\n')
 
@@ -75,6 +82,11 @@ def get_ingredients(recipe_name):
         return exact[0]
 
     partial = []
+    for recipe in data:
+        name = recipe.get("Recipe_Name", "")
+        if words_match(recipe_name, name) and ingredients.strip():
+            partial.append(recipe)
+
     if not matching:
         print(f'No exact match found for "{recipe_name}".')
         # Suggest recipe that is close
@@ -225,7 +237,6 @@ def main():
 
             final_score = create_score(recipe, additives_db)
             print(f"Score: {final_score['score']} / 100")
-
 
             if final_score["additives_found"]:
                 print("\nAdditives found in this recipe:")
