@@ -5,8 +5,8 @@ import csv
 import textwrap
 import re
 import string
-install pip
-pip install python-dotenv
+import os
+from dotenv import load_dotenv
 
 
 # Part 1 and Part 2:  API and Recipe Search
