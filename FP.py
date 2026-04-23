@@ -9,6 +9,7 @@ import re
 # Part 1 and Part 2:  API and Recipe Search
 
 stop_word_list = ["a", "an", "the", "and", "or", "of","with", "in", "on", "for", "to", "at"]
+punctuation = ('*', '', '.', '-')
 
 def get_wordlist(text, remove_stopwords=True):
     """
