@@ -2,7 +2,7 @@
 
 import customtkinter as ctk
 import threading
-from huds_scorer import (
+from FP import (
     connection, find_recipe,
     load_data,  create_score,
 )
@@ -11,7 +11,7 @@ from huds_scorer import (
 ctk.set_appearance_mode("light")
 ctk.set_default_color_theme("blue")
 
-CRIMSON = "#8C1515"   # Harvard crimson
+ORCHID = "#C875C4"   # Orchid
 WHITE   = "#FFFFFF"
 GRAY    = "#F5F5F5"
 DARK    = "#333333"
@@ -52,7 +52,7 @@ class HUDSScorerApp(ctk.CTk):
 
     def _build_header(self):
         """Top banner with title."""
-        header = ctk.CTkFrame(self, fg_color=CRIMSON, corner_radius=0)
+        header = ctk.CTkFrame(self, fg_color=ORCHID, corner_radius=0)
         header.pack(fill="x", pady=(0, 0))
 
         ctk.CTkLabel(
@@ -101,7 +101,7 @@ class HUDSScorerApp(ctk.CTk):
             row,
             text             = "Search",
             font             = ctk.CTkFont(size=13, weight="bold"),
-            fg_color         = CRIMSON,
+            fg_color         = ORCHID,
             hover_color      = "#6b0f0f",
             height           = 40,
             width            = 100,
@@ -144,7 +144,7 @@ class HUDSScorerApp(ctk.CTk):
                 text             = label,
                 variable         = var,
                 font             = ctk.CTkFont(size=13),
-                fg_color         = CRIMSON,
+                fg_color         = ORCHID,
                 hover_color      = "#6b0f0f",
                 checkmark_color  = WHITE,
             ).pack(side="left", padx=(0, 20))
@@ -305,7 +305,7 @@ class HUDSScorerApp(ctk.CTk):
             self.results_frame,
             text       = name,
             font       = ctk.CTkFont(size=17, weight="bold"),
-            text_color = CRIMSON,
+            text_color = ORCHID,
         ).pack(anchor="w", pady=(8, 12))
 
         # ── NOVA score pill ────────────────────────────────────
@@ -349,7 +349,7 @@ class HUDSScorerApp(ctk.CTk):
             add_frame,
             text       = "⛔  Ultra-Processed Additives",
             font       = ctk.CTkFont(size=13, weight="bold"),
-            text_color = CRIMSON,
+            text_color = ORCHID,
         ).pack(anchor="w", padx=14, pady=(12, 4))
 
         if final_score["additives_found"]:
@@ -398,7 +398,7 @@ class HUDSScorerApp(ctk.CTk):
     def _add_score_pill(self, label, score, max_score):
         """Render one score pill with a progress bar."""
         ratio = score / max_score if max_score else 0
-        color = CRIMSON if ratio < 0.5 else "#eab308" if ratio < 0.75 else "#22c55e"
+        color = ORCHID if ratio < 0.5 else "#eab308" if ratio < 0.75 else "#22c55e"
         icon  = "🔴" if ratio < 0.5 else "🟡" if ratio < 0.75 else "🟢"
 
         frame = ctk.CTkFrame(
