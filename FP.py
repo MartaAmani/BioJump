@@ -8,7 +8,16 @@ import string
 import os
 from dotenv import load_dotenv
 
+from rich.console import Console
+from rich.table import Table
+from rich.panel import Panel
+from rich import box
+from rich.align import Align
+console = Console()
 
+# Global variables
+stop_word_list = ["a", "an", "the", "and", "or", "of","with", "in", "on", "for", "to", "at"]
+punctuation = string.punctuation.replace('*', '')
 
 # Part 1: API conection
 
@@ -44,19 +53,13 @@ def connection(recipe_name):
 
 # Part 2:  Recipe Search and match
 
-stop_word_list = ["a", "an", "the", "and", "or", "of","with", "in", "on", "for", "to", "at"]
-punctuation = string.punctuation.replace('*', '')
-
-def get_wordlist(text, remove_stopwords=True):
+def get_wordlist(text, remove_stopwords=True): # from Pset 6
     """Convert text into a list of clean lowercase words."""
-
     text = text.lower()
-
     # Extract words from text
     pattern = '^[{0}]+|[{0}]+$'.format(punctuation) # remove punctuation only from the beginning or end
     words = [re.sub(pattern, '', w) for w in text.split()] # re.sub(pattern, '', w) removes punctuation from the start
                                                         # and end of each word coming from .split()
-
     # By default, remove stopwords from wordlist
     if remove_stopwords:
         return [w for w in words if w not in stop_word_list]
@@ -119,8 +122,8 @@ def find_recipe(recipe_name, data):
         return None
 
 # Part 3: Dietary Preference Collector
-
 def dietary_preference():
+    """Collect dietary filters from the user."""
     print("\nDietary filters (optional). Type 'y' for yes, anything else for no.")
     preferences = {
         "vegan": {
@@ -140,19 +143,13 @@ def dietary_preference():
             "forbidden": ["almond", "walnut", "pecan", "cashew", "hazelnut", "peanut"],
         },
     }
-
     return preferences
-
 
 # Part 4: CSV Loader
 
 def load_data():
-    """
-    Load data from CSV file
-    """
-
+    """ Load data from CSV file """
     additives_db = {}
-
     # Load additives
     with open('additives.csv', mode='r', newline='', encoding='utf-8') as f:
         reader = csv.DictReader(f)
@@ -162,11 +159,11 @@ def load_data():
             "category":   row["category"].strip(),
             "description": row["description"].strip(),
             }
-
     return additives_db
 
 # Step 5: Processed food score
 def create_score(recipe, additives_db):
+    """Score recipe based on ultra-processed additives found."""
     # grab the list of the ingredients
     raw_ingredients = recipe.get("Ingredient_List", "") or ""
     raw_ingredients = raw_ingredients.lower()
@@ -206,7 +203,12 @@ def create_score(recipe, additives_db):
 # Step 0: Main Loop
 
 def main():
-
+    # Welcome message
+    console.print(Panel(Align.center("[bold plum2]BioJump - HUDS Nutrition Scorer[/bold plum2]\n"
+        "[dim]Marta Amani  ·  Final Project CS32[/dim]"),
+        border_style = "plum2",
+        padding= (1, 4),
+        width = 45,))
     # Step 4
     additives_db = load_data()
 
