@@ -4,46 +4,61 @@ Flask web application
 """
 
 from flask import Flask, render_template, request
-from FP import connection, find_recipe, dietary_preference, load_data, create_score
+from FP import connection, find_recipe, load_data, create_score
 import os
 from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 additives_db = load_data()
 
-@app.route("/", methods=["GET","POST"])
+@app.route("/", methods=["GET"])
 def index():
     """Show the search form."""
     return render_template("index.html")
-    result = None
-    error  = None
-    query  = ""
 
-    if request.method == "POST":
-        query = request.form.get("recipe","").strip()
-        data  = connection(query)
-        if not data:
-            error = "Could not reach the HUDS API. Please try again."
-        else:
-            recipe = find_recipe(query, data)
-            if not recipe:
-                error = f'No recipe found for "{query}". Try a different name.'
-            else:
-                score_data = create_score(recipe, additives_db)
-                result = {
-                    "name":        recipe.get("Recipe_Name",""),
-                    "location":    recipe.get("Location_Name",""),
-                    "meal":        recipe.get("Meal_Name",""),
-                    "calories":    recipe.get("Calories","?"),
-                    "allergens":   (recipe.get("Allergens") or "None").strip(", "),
-                    "ingredients": re.sub(r'[\s,)(]+$','',
-                                   recipe.get("Ingredient_List","")).strip(),
-                    "score":       score_data["score"],
-                    "score_color": score_color(score_data["score"]),
-                    "additives":   score_data["additives_found"],
-                }
 
-    return render_template("index.html", result=result, error=error, query=query)
+@app.route("/search", methods=["POST"])
+def search():
+    """Handle form submission and show results."""
+    recipe_name = request.form.get("recipe_name", "").strip()
+    vegan       = request.form.get("vegan")       == "on"
+    gluten_free = request.form.get("gluten_free") == "on"
+    nut_free    = request.form.get("nut_free")    == "on"
+
+    # fetch and score
+    data   = connection(recipe_name)
+    recipe = find_recipe(recipe_name, data) if data else None
+
+    if not recipe:
+        return render_template(
+            "index.html",
+            error = f'No recipe found for "{recipe_name}"'
+        )
+
+    final_score = create_score(recipe, additives_db)
+
+    # dietary warnings
+    ingredients = (recipe.get("Ingredient_List") or "").lower()
+    warnings    = []
+    if vegan and any(w in ingredients for w in
+                     ["meat","chicken","fish","egg","milk","cheese"]):
+        warnings.append("⚠  Not vegan-friendly")
+    if gluten_free and any(w in ingredients for w in
+                           ["wheat","barley","rye","malt"]):
+        warnings.append("⚠  Contains gluten")
+    if nut_free and any(w in ingredients for w in
+                        ["almond","walnut","cashew","peanut"]):
+        warnings.append("⚠  Contains nuts")
+
+    return render_template(
+        "results.html",
+        recipe      = recipe,
+        final_score = final_score,
+        warnings    = warnings,
+    )
+
 
 if __name__ == "__main__":
     app.run(debug=True)
