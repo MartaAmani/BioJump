@@ -234,6 +234,10 @@ def print_comparison(history, choice):
     table.add_column("Score", style="white",  min_width=10)
     if choice == "A":
         table.add_column("Additives Found", style="white",  min_width=16)
+    elif choice == "P":
+        table.add_column("Protein (g)", style="white",  min_width=12)
+    elif choice == "S":
+        table.add_column("Sodium (mg)", style="white",  min_width=12)
 
     for r in history:
         color, icon = score_color_icon(r.final_score)
