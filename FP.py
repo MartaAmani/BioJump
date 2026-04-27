@@ -208,9 +208,15 @@ def create_score(recipe, additives_db):
 
     return {"score": recipe_score, "additives_found": additives_found,}
 
-# Step 6: Create a hisotry of the recipes and compare them
+# Step 6: create a class to store the resiult + score of each searched recipe,
 class ScoredRecipe:
-    """Stores one searched recipe for session history."""
+    """ Create a class to store the resiult + score of each searched recipe,
+    so that we can create a history andcompare them later, ans use it to print
+    the report card and the comparision table in a more organized way.
+    We use this clas in main() to create an entry for each searched recipe a
+    nd store it in the history list; in print_report() to print the report card;
+    and in print_comparison() to print the comparision table."""
+
     def __init__(self, huds_data, final_score):
         self.name = huds_data.get("Recipe_Name")
         self.final_score = final_score["score"]
@@ -223,6 +229,94 @@ class ScoredRecipe:
         return f"{self.name:<45}  SCORE: {self.final_score} / 100"
 
 
+# Step 7: Report Card
+def print_report(entry, preferences):
+    """
+    Print a report card using rich.
+    Called from main() after every successful search.
+    """
+    recipe_name = entry.name
+    calories = entry.data.get("Calories",   "N/A")
+    allergens = clean_trailing(entry.data.get("Allergens", "") or "")
+    ingredients_list = entry.data.get('Ingredient_List') or "N/A"
+    nutrition_score = entry.final_score
+    additives_found = entry.additives
+
+    # Header
+    console.print()
+    text = Text(justify="center")
+    text.append(recipe_name, style="bold blue_violet")
+    text.append(f"\nCalories: {calories} kcal per serving", style="white")
+    console.print(Panel(Align.center(text),
+        title = "[bold white]HUDS NUTRITION REPORT CARD[/bold white]",
+        border_style = "cyan",
+        padding= (1, 4),
+        width = 55
+    ))
+
+    # Main output
+    max_len = len("Ingredients:")
+    console.print(textwrap.fill(ingredients_list.strip(" \t\n,)( "), width=80, initial_indent="Ingredients: ",subsequent_indent=" " * 13))
+    console.print(f"{'Allergens:':<{max_len}} {allergens}")
+
+    # Dietary preferences
+    banned_ingredients = []
+    if preferences:
+        for key, info in preferences.items():
+            for ingredient in get_wordlist(ingredients_list, remove_stopwords=False):
+                if ingredient in info["forbidden"]:
+                    banned_ingredients.append(ingredient)
+        console.print(f"[bold yellow]This recipe contains the following ingredients that may not align with your dietary preferences: [/bold yellow]
+                      [yellow]{''.join(set(banned_ingredients))}[/bold yellow]")
+
+    # Additives table
+    console.print()
+    has_health_concerns = False
+    if additives_found:
+        table = Table(
+            title        = "⛔ Ultra-Processed Additives Found",
+            box          = box.ROUNDED,
+            border_style = "red",
+            header_style = "bold red",
+            show_lines   = True,)
+        table.add_column("Additive",style="white", min_width=28)
+        table.add_column("Purpose", style="yellow",min_width=18)
+        if any(item["health_concern"] for item in additives_found):
+            table.add_column("Health Concern", style="dim", min_width=25)
+            has_health_concerns = True
+
+        for item in additives_found:
+            if has_health_concerns:
+                table.add_row(
+                    item["name"],
+                    item["category"],
+                    item["health_concern"],)
+            else:
+                table.add_row(
+                    item["name"],
+                    item["category"],)
+
+        console.print(table)
+
+    else:
+        console.print(Panel(
+            "✅ [bold green]No ultra-processed additives found![/bold green]",
+            border_style = "green",
+        ))
+
+    # Score Bar
+    score_color, score_icon = score_color_icon(nutrition_score)
+    filled = int((nutrition_score / 100) * 30)
+    bar = "█" * filled + "░" * (30 - filled)
+
+    console.print(
+        f"\n  {score_icon}  [bold]Nutrition Score[/bold]   "
+        f"[{score_color}][{bar}][/{score_color}]   "
+        f"[bold {score_color}]{nutrition_score} / 100[/bold {score_color}]"
+    )
+    console.print()
+
+# Step 8: Comparison Table
 def print_comparison(history, choice):
     """Print a side-by-side comparison table of all searched recipes."""
     if len(history) < 2:
@@ -274,90 +368,6 @@ def print_comparison(history, choice):
             f"\n  ✅ [bold green]Option with less sodium: "
             f"{best.name} (Sodium: {best.sodium})[/bold green]\n")
 
-# Step 7: Report Card
-def print_report(entry, preferences):
-    """
-    Print a report card using rich.
-    Called from main() after every successful search.
-    """
-    recipe_name = entry.name
-    calories = entry.data.get("Calories",   "N/A")
-    allergens = clean_trailing(entry.data.get("Allergens", "") or "")
-    ingredients_list = entry.data.get('Ingredient_List') or "N/A"
-    nutrition_score = entry.final_score
-    additives_found = entry.additives
-
-    # Header
-    console.print()
-    text = Text(justify="center")
-    text.append(recipe_name, style="bold blue_violet")
-    text.append(f"\nCalories: {calories} kcal per serving", style="white")
-    console.print(Panel(Align.center(text),
-        title = "[bold white]HUDS NUTRITION REPORT CARD[/bold white]",
-        border_style = "cyan",
-        padding= (1, 4),
-        width = 55
-    ))
-
-    # Main output
-    max_len = len("Ingredients:")
-    console.print(textwrap.fill(ingredients_list.strip(" \t\n,)( "), width=80, initial_indent="Ingredients: ",subsequent_indent=" " * 13))
-    console.print(f"{'Allergens:':<{max_len}} {allergens}")
-
-
-
-    # Dietary preferences
-    #if preferences:
-        #console.print()
-        #for w in warnings:
-            #console.print(f"  [bold yellow]{w}[/bold yellow]")
-
-    # Additives table
-    console.print()
-    has_health_concerns = False
-    if additives_found:
-        table = Table(
-            title        = "⛔ Ultra-Processed Additives Found",
-            box          = box.ROUNDED,
-            border_style = "red",
-            header_style = "bold red",
-            show_lines   = True,)
-        table.add_column("Additive",style="white", min_width=28)
-        table.add_column("Purpose", style="yellow",min_width=18)
-        if any(item["health_concern"] for item in additives_found):
-            table.add_column("Health Concern", style="dim", min_width=25)
-            has_health_concerns = True
-
-        for item in additives_found:
-            if has_health_concerns:
-                table.add_row(
-                    item["name"],
-                    item["category"],
-                    item["health_concern"],)
-            else:
-                table.add_row(
-                    item["name"],
-                    item["category"],)
-
-        console.print(table)
-
-    else:
-        console.print(Panel(
-            "✅ [bold green]No ultra-processed additives found![/bold green]",
-            border_style = "green",
-        ))
-
-    # Score Bar
-    score_color, score_icon = score_color_icon(nutrition_score)
-    filled = int((nutrition_score / 100) * 30)
-    bar = "█" * filled + "░" * (30 - filled)
-
-    console.print(
-        f"\n  {score_icon}  [bold]Nutrition Score[/bold]   "
-        f"[{score_color}][{bar}][/{score_color}]   "
-        f"[bold {score_color}]{nutrition_score} / 100[/bold {score_color}]"
-    )
-    console.print()
 
 # Step 0: Main Loop
 def main():
