@@ -176,11 +176,10 @@ def create_score(recipe, additives_db):
     recipe_score = 100
     additives_found = []
 
-    for additive, info in additives_db.items():
+    for additive, info in additives_db.items(): # additive is the Key, info is the value (the inner dictionary with category, health_concern and grade)
         if additive in raw_ingredients:    # compare each ingredeint with the additives disctonary to see if any of the ingredient is present
             grade = info["grade"]
-            deduction = grade
-            recipe_score -= deduction
+            recipe_score -= grade
             additives_found.append({
                 "name":       additive,
                 "category":   info["category"],
