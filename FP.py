@@ -323,7 +323,7 @@ def print_report(entry, preferences):
     console.print()
 
 # Step 8: Comparison Table
-def print_comparison(history, choice, which):
+def print_comparison(chosen, choice):
     """Print a side-by-side comparison table of all searched recipes."""
 
     table = Table(
@@ -344,7 +344,7 @@ def print_comparison(history, choice, which):
     elif choice == "F":
         table.add_column("Dietary Fiber (g)", style="white",  min_width=18)
 
-    for entry in history:
+    for entry in chosen:
         color, icon = score_color_icon(entry.final_score)
         score_str = f"{icon} [{color}]{entry.final_score}/100[/{color}]"
         if choice == "A":
@@ -360,22 +360,23 @@ def print_comparison(history, choice, which):
 
     # Highlight the best option
     if choice == "A":
-        best = max(history, key=lambda entry: entry.final_score) # max find the item in history with the max final_score
+        if 
+        best = max(chosen, key=lambda entry: entry.final_score) # max find the item in history with the max final_score
         console.print(
             f"\n  \N{Trophy} [bold green]Best option: "
             f"{best.name} (Score: {best.final_score}/100)[/bold green]\n")
     elif choice == "P":
-        best = max(history, key=lambda entry: entry.protein if isinstance(entry.protein, (int, float)) else 0) # Isinstance (object, type) evaluates to True if r.protein is an integer or float, else False.
+        best = max(chosen, key=lambda entry: entry.protein if isinstance(entry.protein, (int, float)) else 0) # Isinstance (object, type) evaluates to True if r.protein is an integer or float, else False.
         console.print(
             f"\n  \N{Trophy} [bold green]Option with more protein: "
             f"{best.name} (Protein: {best.protein} grams)[/bold green]\n")
     elif choice == "S":
-        best = min(history, key=lambda entry: entry.sodium if isinstance(entry.sodium, (int, float)) else float('inf')) # Isinstance (object, type) evaluates to True if r.calories is an integer or float, else False. If it's not a number, we treat it as infinity so it won't be chosen as the best option.
+        best = min(chosen, key=lambda entry: entry.sodium if isinstance(entry.sodium, (int, float)) else float('inf')) # Isinstance (object, type) evaluates to True if r.calories is an integer or float, else False. If it's not a number, we treat it as infinity so it won't be chosen as the best option.
         console.print(
             f"\n  \N{Trophy} [bold green]Option with less sodium: "
             f"{best.name} (Sodium: {best.sodium})[/bold green]\n")
     elif choice == "F":
-        best = max(history, key=lambda entry: entry.data.get("Dietary_Fiber", 0) if isinstance(entry.data.get("Dietary_Fiber", 0), (int, float)) else 0)
+        best = max(chosen, key=lambda entry: entry.data.get("Dietary_Fiber", 0) if isinstance(entry.data.get("Dietary_Fiber", 0), (int, float)) else 0)
         console.print(
             f"\n  \N{Trophy} [bold green]Option with more dietary fiber: "
             f"{best.name} (Dietary Fiber: {best.data.get('Dietary_Fiber', 'N/A')} grams)[/bold green]\n")
@@ -436,14 +437,17 @@ def main():
                     # The student/user decides which to compare
                     while True:
                         choice_compare = input("\nEnter the number of the recipe you want to compare (e.g. 1,2, etc.) ").strip()
-                        
+                        choice_compare_index = choice_compare.split(",")
+                        for index in choice_compare_index:
+                            chosen = [history[int(index)-1]]
+                            break
+        while True:
+            choice = input("\nWhat would you like to compare? Type 'A' for additives found, 'P' for Protein, 'S' for Sodium, 'F' for Dietary Fiber.\n").strip().upper()
+            if choice in ["A", "P", "S", "F"]:
+                break
+            console.print("[red]Invalid choice. Please enter 'A', 'P', 'S', or 'F'.[/red]")
 
-
-
-
-                    which.append = input("\nWhich recipe would you like to compare?")
-                    choice = input("\nWhat would you like to compare? Type 'A' for additives found, 'P' for Protein, 'S' for Sodium, 'F' for Dietary Fiber.\n")
-                print_comparison(history, which, choice)
+        print_comparison(chosen, choice)
 
 if __name__ == "__main__":
     main()
