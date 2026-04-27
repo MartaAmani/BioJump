@@ -223,6 +223,7 @@ class ScoredRecipe:
         self.additives = final_score["additives_found"]
         self.protein = huds_data.get("Protein", "N/A")
         self.sodium = huds_data.get("Sodium", "N/A")
+        self.dietary_fiber = huds_data.get("Dietary_Fiber", "N/A")
         self.data = huds_data # store the full data for comparision table
 
     def __str__(self):
@@ -281,7 +282,7 @@ def print_report(entry, preferences):
             border_style = "red",
             header_style = "bold red",
             show_lines   = True,)
-        table.add_column("Additive".capitalize(),style="white", min_width=28)
+        table.add_column("Additive",style="white", min_width=28)
         table.add_column("Purpose", style="yellow",min_width=18)
         if any(item["health_concern"] for item in additives_found):
             table.add_column("Health Concern", style="white", min_width=25)
@@ -372,6 +373,11 @@ def print_comparison(history, choice):
         console.print(
             f"\n  ✅ [bold green]Option with less sodium: "
             f"{best.name} (Sodium: {best.sodium})[/bold green]\n")
+    elif choice == "F":
+        best = max(history, key=lambda entry: entry.data.get("Dietary_Fiber", 0) if isinstance(entry.data.get("Dietary_Fiber", 0), (int, float)) else 0)
+        console.print(
+            f"\n  ✅ [bold green]Option with more dietary fiber: "
+            f"{best.name} (Dietary Fiber: {best.data.get('Dietary_Fiber', 'N/A')} grams)[/bold green]\n")
 
 
 # Step 0: Main Loop
@@ -422,7 +428,7 @@ def main():
         if len(history) >= 2:
             comparision_setup = input("\nWould you like to compare all searched recipes so far Type 'y' for yes, anything else for no.\n")
             if comparision_setup.lower() == "y":
-                choice = input("\nWhat would you like to compare? Type 'A' for additives found, 'P' for Protein, 'S' for Sodium.\n")
+                choice = input("\nWhat would you like to compare? Type 'A' for additives found, 'P' for Protein, 'S' for Sodium, 'F' for Dietary Fiber.\n")
                 print_comparison(history, choice)
 
 if __name__ == "__main__":
