@@ -241,7 +241,7 @@ def print_comparison(history, choice):
 
     for entry in history:
         color, icon = score_color_icon(entry.final_score)
-        score_str = f"{icon} [{color}]{entry}/100[/{color}]"
+        score_str = f"{icon} [{color}]{entry.final_score}/100[/{color}]"
         if choice == "A":
             table.add_row(entry.name,score_str,str(len(entry.additives)),)
         elif choice == "P":
@@ -255,18 +255,18 @@ def print_comparison(history, choice):
     if choice == "A":
         best = max(history, key=lambda entry: entry.final_score) # max find the item in history with the max final_score
         console.print(
-        f"\n  ✅ [bold green]Best option: "
-        f"{best.name} (Score: {best.final_score}/100)[/bold green]\n")
+            f"\n  ✅ [bold green]Best option: "
+            f"{best.name} (Score: {best.final_score}/100)[/bold green]\n")
     elif choice == "P":
         best = max(history, key=lambda entry: entry.protein if isinstance(entry.protein, (int, float)) else 0) # Isinstance (object, type) evaluates to True if r.protein is an integer or float, else False.
         console.print(
-        f"\n  ✅ [bold green]Option with more protein: "
-        f"{best.name} (Protein: {best.protein} grams[/bold green]\n")
+            f"\n  ✅ [bold green]Option with more protein: "
+            f"{best.name} (Protein: {best.protein} grams)[/bold green]\n")
     elif choice == "S":
         best = min(history, key=lambda entry: entry.sodium if isinstance(entry.sodium, (int, float)) else float('inf')) # Isinstance (object, type) evaluates to True if r.calories is an integer or float, else False. If it's not a number, we treat it as infinity so it won't be chosen as the best option.
-    console.print(
-        f"\n  ✅ [bold green]Option with less sodium: "
-        f"{best.name} (Sodium: {best.sodium}[/bold green]\n")
+        console.print(
+            f"\n  ✅ [bold green]Option with less sodium: "
+            f"{best.name} (Sodium: {best.sodium})[/bold green]\n")
 
 # Step 7: Report Card
 def clean_trailing(text):
@@ -280,8 +280,8 @@ def print_report(entry, preferences):
     """
     recipe_name = entry.name
     calories = entry.data.get("Calories",   "N/A")
-    allergens = clean_trailing(entry.get("Allergens", "") or "")
-    ingredients_list = entry.get('Ingredient_List') or "N/A"
+    allergens = clean_trailing(entry.data.get("Allergens", "") or "")
+    ingredients_list = entry.data.get('Ingredient_List') or "N/A"
     nutrition_score = entry.final_score
     additives_found = entry.additives
 
