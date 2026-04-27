@@ -401,7 +401,7 @@ def main():
         if len(history) >= 2:
             comparision_setup = input("\nWould you like to compare all searched recipes so far Type 'y' for yes, anything else for no.\n")
             if comparision_setup.lower() == "y":
-                choice = input("\nWhat would you like to compare? Type 'A' for additives found, 'P' for Protein, 'C' for Calories.\n")
+                choice = input("\nWhat would you like to compare? Type 'A' for additives found, 'P' for Protein, 'S' for Sodium.\n")
                 print_comparison(history, choice)
 
 if __name__ == "__main__":
