@@ -292,7 +292,7 @@ def print_report(entry, preferences):
         for item in additives_found:
             if has_health_concerns:
                 table.add_row(
-                    item["name"].capitalize(),
+                    item["name"].title(),
                     item["category"],
                     item["health_concern"],
                     item["safety_label"],)
