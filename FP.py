@@ -250,11 +250,19 @@ def print_comparison(history, choice):
     # Highlight the best option
     if choice == "A":
         best = max(history, key=lambda r: r.final_score) # max find the item in history with the max final_score
-    elif choice == "P":
-        best = max(history, key=lambda r: r.protein if isinstance(r.protein, (int, float)) else 0)
-    console.print(
+        console.print(
         f"\n  ✅ [bold green]Best option: "
         f"{best.name} (Score: {best.final_score}/100)[/bold green]\n")
+    elif choice == "P":
+        best = max(history, key=lambda r: r.protein if isinstance(r.protein, (int, float)) else 0) # Isinstance (object, type) evaluates to True if r.protein is an integer or float, else False.
+        console.print(
+        f"\n  ✅ [bold green]Option with more protein: "
+        f"{best.name} (Protein: {best.protein} grams[/bold green]\n")
+    elif choice == "C":
+        best = min(history, key=lambda r: r.calories if isinstance(r.calories, (int, float)) else float('inf')) # Isinstance (object, type) evaluates to True if r.calories is an integer or float, else False. If it's not a number, we treat it as infinity so it won't be chosen as the best option.
+    console.print(
+        f"\n  ✅ [bold green]Option with less calories: "
+        f"{best.name} (Calories: {best.final_score}/100)[/bold green]\n")
 
 # Step 7: Report Card
 def clean_trailing(text):
