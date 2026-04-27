@@ -293,11 +293,13 @@ def print_report(entry, preferences):
                 table.add_row(
                     item["name"],
                     item["category"],
-                    item["health_concern"],)
+                    item["health_concern"],
+                    item["safety_label"],)
             else:
                 table.add_row(
                     item["name"],
-                    item["category"],)
+                    item["category"],
+                    item["safety_label"],)
 
         console.print(table)
 
