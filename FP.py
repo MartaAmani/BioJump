@@ -17,9 +17,44 @@ from rich.align import Align
 console = Console(record=True, highlight=False)
 
 
-# Global variables
+# Helpers
 stop_word_list = ["a", "an", "the", "and", "or", "of","with", "in", "on", "for", "to", "at"]
 punctuation = string.punctuation.replace('*', '')
+
+def clean_trailing(text):
+    """Remove trailing whitespace, commas, and parentheses."""
+    return re.sub(r'[\s,)(]+$', '', text)
+
+def get_wordlist(text, remove_stopwords=True):
+    """Convert text into a list of clean lowercase words."""
+    text = text.lower()
+    # Extract words from text
+    pattern = '^[{0}]+|[{0}]+$'.format(punctuation) # remove punctuation only from the beginning or end
+    words = [re.sub(pattern, '', w) for w in text.split()] # re.sub(pattern, '', w) removes punctuation from the start
+                                                        # and end of each word coming from .split()
+    # By default, remove stopwords from wordlist
+    if remove_stopwords:
+        return [w for w in words if w not in stop_word_list]
+    else:
+        return words
+
+def partial_match(search, recipe_name):
+    """Return True if the search appears in any recipe name"""
+    search_words = get_wordlist(search)
+    recipe_words = get_wordlist(recipe_name)
+    return any(word in recipe_words for word in search_words) # True if at least one search word is found in the recipe word list
+
+def score_color_icon(final_score):
+    ''' choose color and icon based on the nutrition score'''
+    if final_score >= 85:
+        return "green", "\N{Large Green Circle}"
+    elif final_score >= 60:
+        return "dark_orange", "\N{Large Orange Circle}"
+    elif final_score >= 45:
+        return "yellow", "\N{Large Yellow Circle}"
+    else:
+        return"red", "\N{Large Red Circle}"
+
 
 # Part 1: API conection
 load_dotenv()
@@ -52,26 +87,6 @@ def connection(recipe_name):
     return data
 
 # Part 2:  Recipe Search and match
-def get_wordlist(text, remove_stopwords=True):
-    """Convert text into a list of clean lowercase words."""
-    text = text.lower()
-    # Extract words from text
-    pattern = '^[{0}]+|[{0}]+$'.format(punctuation) # remove punctuation only from the beginning or end
-    words = [re.sub(pattern, '', w) for w in text.split()] # re.sub(pattern, '', w) removes punctuation from the start
-                                                        # and end of each word coming from .split()
-    # By default, remove stopwords from wordlist
-    if remove_stopwords:
-        return [w for w in words if w not in stop_word_list]
-    else:
-        return words
-
-def partial_match(search, recipe_name):
-    """Return True if the search appears in any recipe name"""
-    search_words = get_wordlist(search)
-    recipe_words = get_wordlist(recipe_name)
-    return any(word in recipe_words for word in search_words) # True if at least one search word is found in the recipe word list
-
-
 def find_recipe(recipe_name, data):
     ''' Search a list of recipe dicts for the best match to 'search'.'''
     search = recipe_name.upper() # all the names are uppercase
@@ -207,16 +222,6 @@ class ScoredRecipe:
     def __str__(self):
         return f"{self.name:<45}  SCORE: {self.final_score} / 100"
 
-def score_color_icon(final_score):
-    ''' choose color and icon based on the nutrition score'''
-    if final_score >= 85:
-        return "green", "\N{Large Green Circle}"
-    elif final_score >= 60:
-        return "dark_orange", "\N{Large Orange Circle}"
-    elif final_score >= 45:
-        return "yellow", "\N{Large Yellow Circle}"
-    else:
-        return"red", "\N{Large Red Circle}"
 
 def print_comparison(history, choice):
     """Print a side-by-side comparison table of all searched recipes."""
@@ -270,10 +275,6 @@ def print_comparison(history, choice):
             f"{best.name} (Sodium: {best.sodium})[/bold green]\n")
 
 # Step 7: Report Card
-def clean_trailing(text):
-    """Remove trailing whitespace, commas, and parentheses."""
-    return re.sub(r'[\s,)(]+$', '', text)
-
 def print_report(entry, preferences):
     """
     Print a report card using rich.
