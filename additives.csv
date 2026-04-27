@@ -1,157 +1,157 @@
-additive,category,health_concern,grade
-acetic acid,Preservative,,1
-acesulfame potassium,Sweetener,Cancer,7
-advantame,Sweetener,,1
-alginate,Thickener,,1
-allulose,Sweetener,Digestive,3
-aloe vera,Flavoring,Cancer,7
-ammonium compounds,Preservative,,1
-amylase,Flavoring,,1
-annatto,Coloring,Allergies & Sensitivities,4
-artificial and natural flavoring,Flavoring,Cancer,4
-artificial flavor,Flavoring,Cancer,4
-natural flavor,Flavoring,Cancer,4
-artificial sweeteners,Sweetener,,5
-ascorbyl palmitate,Preservative,,1
-aspartame,Sweetener,Cancer,7
-autolyzed yeast extract,Flavoring,Allergies & Sensitivities,4
-yeast extract,Flavoring,Allergies & Sensitivities,4
-azodicarbonamide,Coloring,Cancer,7
-beta-carotene,Coloring,,1
-bha,Preservative,Cancer,7
-bht,Preservative,Cancer,5
-blue 1,Coloring,Neurological & Behavioral,7
-red 40,Coloring,Neurological & Behavioral,7
-yellow 5,Coloring,Neurological & Behavioral,7
-brazzein,Sweetener,Allergies & Sensitivities,5
-brominated vegetable oil,Emulsifier,Neurological & Behavioral,7
-butylated hydroxyanisole,Preservative,Cancer,7
-butylated hydroxytoluene,Preservative,Cancer,5
-caffeine,Vitamins & Supplements,Neurological & Behavioral,4
-calcium propionate,Preservative,,1
-caramel color,Coloring,Cancer,7
-caramel coloring,Coloring,Cancer,7
-carboxymethyl cellulose,Other,Digestive,5
-carmine,Coloring,Allergies & Sensitivities,4
-carrageenan,Thickener,Cancer,5
-casein,Coloring,Allergies & Sensitivities,4
-castoreum,Flavoring,,1
-cellulose,Emulsifier,,1
-citric acid,Flavoring,,1
-corn syrup,Sweetener,Obesity,3
-cyclamate,Sweetener,Cancer,7
-cysteine,Preservative,,1
-datem,Emulsifier,,1
-dextrin,Emulsifier,,1
-dextrose,Sweetener,Obesity,3
-diacetyl,Flavoring,Respiratory,5
-diacylglycerol,Oil & Oil Substitutes,,1
-disodium edta,Preservative,,1
-edta,Other,,1
-erythorbic acid,Preservative,,1
-erythritol,Sweetener,,1
-ferrous gluconate,Coloring,,1
-fructose,Sweetener,Cardiovascular,3
-fumaric acid,Flavoring,,1
-gelatin,Thickener,,1
-ginkgo biloba,Vitamins & Supplements,Cancer,7
-ginseng,Vitamins & Supplements,,1
-gluconic acid,pH Control,,1
-glycerin,Other,,1
-disodium guanylate,Flavoring,,1
-guarana,Vitamins & Supplements,Neurological & Behavioral,4
-guar gum,Thickener,Allergies & Sensitivities,4
-xanthan gum,Thickener,Allergies & Sensitivities,4
-high-fructose corn syrup,Sweetener,Cardiovascular,3
-high fructose corn syrup,Sweetener,Cardiovascular,3
-high-maltose corn syrup,Sweetener,,3
-hydrolyzed vegetable protein,Flavoring,Allergies & Sensitivities,4
-hydrolyzed,Flavoring,Allergies & Sensitivities,4
-disodium inosinate,Flavoring,,1
-inter-esterified oil,Oil & Oil Substitutes,,1
-inulin,Vitamins & Supplements,,1
-invert sugar,Sweetener,Obesity,3
-isolated soy protein,Vitamins & Supplements,,1
-soy protein isolate,Vitamins & Supplements,,1
-isomalt,Sweetener,Digestive,3
-lactic acid,Preservative,,1
-lactitol,Sweetener,Digestive,3
-lactose,Vitamins & Supplements,Allergies & Sensitivities,4
-lecithin,Preservative,,0
-soy lecithin,Emulsifier,,1
-magnesium compounds,Vitamins & Supplements,,1
-malic acid,Flavoring,,1
-maltitol,Sweetener,Digestive,3
-maltodextrin,Other,,1
-mannitol,Sweetener,Digestive,3
-monatin,Sweetener,,5
-monk fruit extract,Sweetener,,5
-mono- and diglycerides,Emulsifier,,1
-modified starch,Thickener,,1
-modified food starch,Thickener,,1
-msg,Flavoring,Allergies & Sensitivities,4
-mycoprotein,Meat Substitute,Allergies & Sensitivities,4
-natamycin,Preservative,,1
-neotame,Sweetener,,1
-nisin,Preservative,,1
-olestra,Oil & Oil Substitutes,Digestive,7
-oligofructose,Sweetener,,1
-papain,Other,,1
-paprika extract,Coloring,,1
-pectin,Other,,1
-phosphoric acid,Vitamins & Supplements,Cardiovascular,3
-polydextrose,Other,Digestive,3
-polyglycerol polyricinoleate,Emulsifier,,1
-polysorbate,Emulsifier,Digestive,5
-polysorbate 60,Emulsifier,Digestive,5
-polysorbate 80,Emulsifier,Digestive,5
-potassium bromate,Other,Cancer,7
-potassium chloride,Flavoring,,4
-potassium iodate,Other,Cancer,7
-potassium sorbate,Preservative,,1
-propylene glycol,Preservative,Allergies & Sensitivities,4
-propyl gallate,Preservative,Cancer,7
-propylparaben,Preservative,,5
-quinine,Flavoring,Allergies & Sensitivities,4
-saccharin,Sweetener,Cancer,7
-salatrim,Oil & Oil Substitutes,Digestive,3
-silicon dioxide,Other,,1
-sodium benzoate,Preservative,Allergies & Sensitivities,4
-sodium diacetate,Preservative,,1
-sodium erythorbate,Preservative,,1
-sodium nitrate,Preservative,Cancer,7
-sodium nitrite,Preservative,Cancer,7
-sodium stearoyl lactylate,Other,,1
-sorbic acid,Preservative,,1
-sorbitan monostearate,Emulsifier,,1
-sorbitol,Sweetener,Digestive,3
-starch,Thickener,,1
-stearic acid,Flavoring,,1
-stevia,Sweetener,,1
-sucralose,Sweetener,Cancer,7
-sucrose acetate isobutyrate,Emulsifier,,1
-sulfites,Preservative,Allergies & Sensitivities,4
-sodium bisulfite,Preservative,Allergies & Sensitivities,4
-synthetic food dyes,Coloring,Neurological & Behavioral,7
-tagatose,Sweetener,Digestive,3
-tartaric acid,Preservative,,1
-taurine,Vitamins & Supplements,,1
-tbhq,Preservative,Cancer,7
-thaumatin,Sweetener,,1
-titanium dioxide,Coloring,DNA damage,7
-torula yeast,Flavoring,,1
-trans fat,Oil & Oil Substitutes,Cardiovascular,7
-partially hydrogenated vegetable oil,Oil & Oil Substitutes,Cardiovascular,7
-transglutaminase,Other,Food-borne Illness,5
-triacetin,Other,,1
-vanillin,Flavoring,,1
-vitamin b1,Vitamins & Supplements,,1
-vitamin b2,Vitamins & Supplements,,1
-vitamin b3,Vitamins & Supplements,,1
-vitamin b5,Vitamins & Supplements,,1
-vitamin b6,Vitamins & Supplements,,1
-vitamin c,Vitamins & Supplements,,1
-vitamin d,Vitamins & Supplements,,1
-vitamin e,Vitamins & Supplements,,1
-xylitol,Sweetener,Digestive,3
-yellow prussiate of soda,Other,,1
+additive,category,health_concern,grade,safety_label
+acetic acid,Preservative,,1,Safe
+acesulfame potassium,Sweetener,Cancer,7,Avoid
+advantame,Sweetener,,1,Safe
+alginate,Thickener,,1,Safe
+allulose,Sweetener,Digestive,3,Moderate Consumption
+aloe vera,Flavoring,Cancer,7,Avoid
+ammonium compounds,Preservative,,1,Safe
+amylase,Flavoring,,1,Safe
+annatto,Coloring,Allergies & Sensitivities,4,Limit Consumption
+artificial and natural flavoring,Flavoring,Cancer,4,Limit Consumption
+artificial flavor,Flavoring,Cancer,4,Limit Consumption
+natural flavor,Flavoring,Cancer,4,Limit Consumption
+artificial sweeteners,Sweetener,,5,Caution
+ascorbyl palmitate,Preservative,,1,Safe
+aspartame,Sweetener,Cancer,7,Avoid
+autolyzed yeast extract,Flavoring,Allergies & Sensitivities,4,Limit Consumption
+yeast extract,Flavoring,Allergies & Sensitivities,4,Limit Consumption
+azodicarbonamide,Coloring,Cancer,7,Avoid
+beta-carotene,Coloring,,1,Safe
+bha,Preservative,Cancer,7,Avoid
+bht,Preservative,Cancer,5,Caution
+blue 1,Coloring,Neurological & Behavioral,7,Avoid
+red 40,Coloring,Neurological & Behavioral,7,Avoid
+yellow 5,Coloring,Neurological & Behavioral,7,Avoid
+brazzein,Sweetener,Allergies & Sensitivities,5,Caution
+brominated vegetable oil,Emulsifier,Neurological & Behavioral,7,Avoid
+butylated hydroxyanisole,Preservative,Cancer,7,Avoid
+butylated hydroxytoluene,Preservative,Cancer,5,Caution
+caffeine,Vitamins & Supplements,Neurological & Behavioral,4,Limit Consumption
+calcium propionate,Preservative,,1,Safe
+caramel color,Coloring,Cancer,7,Avoid
+caramel coloring,Coloring,Cancer,7,Avoid
+carboxymethyl cellulose,Other,Digestive,5,Caution
+carmine,Coloring,Allergies & Sensitivities,4,Limit Consumption
+carrageenan,Thickener,Cancer,5,Caution
+casein,Coloring,Allergies & Sensitivities,4,Limit Consumption
+castoreum,Flavoring,,1,Safe
+cellulose,Emulsifier,,1,Safe
+citric acid,Flavoring,,1,Safe
+corn syrup,Sweetener,Obesity,3,Moderate Consumption
+cyclamate,Sweetener,Cancer,7,Avoid
+cysteine,Preservative,,1,Safe
+datem,Emulsifier,,1,Safe
+dextrin,Emulsifier,,1,Safe
+dextrose,Sweetener,Obesity,3,Moderate Consumption
+diacetyl,Flavoring,Respiratory,5,Caution
+diacylglycerol,Oil & Oil Substitutes,,1,Safe
+disodium edta,Preservative,,1,Safe
+edta,Other,,1,Safe
+erythorbic acid,Preservative,,1,Safe
+erythritol,Sweetener,,1,Safe
+ferrous gluconate,Coloring,,1,Safe
+fructose,Sweetener,Cardiovascular,3,Moderate Consumption
+fumaric acid,Flavoring,,1,Safe
+gelatin,Thickener,,1,Safe
+ginkgo biloba,Vitamins & Supplements,Cancer,7,Avoid
+ginseng,Vitamins & Supplements,,1,Safe
+gluconic acid,pH Control,,1,Safe
+glycerin,Other,,1,Safe
+disodium guanylate,Flavoring,,1,Safe
+guarana,Vitamins & Supplements,Neurological & Behavioral,4,Limit Consumption
+guar gum,Thickener,Allergies & Sensitivities,4,Limit Consumption
+xanthan gum,Thickener,Allergies & Sensitivities,4,Limit Consumption
+high-fructose corn syrup,Sweetener,Cardiovascular,3,Moderate Consumption
+high fructose corn syrup,Sweetener,Cardiovascular,3,Moderate Consumption
+high-maltose corn syrup,Sweetener,,3,Moderate Consumption
+hydrolyzed vegetable protein,Flavoring,Allergies & Sensitivities,4,Limit Consumption
+hydrolyzed,Flavoring,Allergies & Sensitivities,4,Limit Consumption
+disodium inosinate,Flavoring,,1,Safe
+inter-esterified oil,Oil & Oil Substitutes,,1,Safe
+inulin,Vitamins & Supplements,,1,Safe
+invert sugar,Sweetener,Obesity,3,Moderate Consumption
+isolated soy protein,Vitamins & Supplements,,1,Safe
+soy protein isolate,Vitamins & Supplements,,1,Safe
+isomalt,Sweetener,Digestive,3,Moderate Consumption
+lactic acid,Preservative,,1,Safe
+lactitol,Sweetener,Digestive,3,Moderate Consumption
+lactose,Vitamins & Supplements,Allergies & Sensitivities,4,Limit Consumption
+lecithin,Preservative,,0,Safe
+soy lecithin,Emulsifier,,1,Safe
+magnesium compounds,Vitamins & Supplements,,1,Safe
+malic acid,Flavoring,,1,Safe
+maltitol,Sweetener,Digestive,3,Moderate Consumption
+maltodextrin,Other,,1,Safe
+mannitol,Sweetener,Digestive,3,Moderate Consumption
+monatin,Sweetener,,5,Caution
+monk fruit extract,Sweetener,,5,Caution
+mono- and diglycerides,Emulsifier,,1,Safe
+modified starch,Thickener,,1,Safe
+modified food starch,Thickener,,1,Safe
+msg,Flavoring,Allergies & Sensitivities,4,Limit Consumption
+mycoprotein,Meat Substitute,Allergies & Sensitivities,4,Limit Consumption
+natamycin,Preservative,,1,Safe
+neotame,Sweetener,,1,Safe
+nisin,Preservative,,1,Safe
+olestra,Oil & Oil Substitutes,Digestive,7,Avoid
+oligofructose,Sweetener,,1,Safe
+papain,Other,,1,Safe
+paprika extract,Coloring,,1,Safe
+pectin,Other,,1,Safe
+phosphoric acid,Vitamins & Supplements,Cardiovascular,3,Moderate Consumption
+polydextrose,Other,Digestive,3,Moderate Consumption
+polyglycerol polyricinoleate,Emulsifier,,1,Safe
+polysorbate,Emulsifier,Digestive,5,Caution
+polysorbate 60,Emulsifier,Digestive,5,Caution
+polysorbate 80,Emulsifier,Digestive,5,Caution
+potassium bromate,Other,Cancer,7,Avoid
+potassium chloride,Flavoring,,4,Limit Consumption
+potassium iodate,Other,Cancer,7,Avoid
+potassium sorbate,Preservative,,1,Safe
+propylene glycol,Preservative,Allergies & Sensitivities,4,Limit Consumption
+propyl gallate,Preservative,Cancer,7,Avoid
+propylparaben,Preservative,,5,Caution
+quinine,Flavoring,Allergies & Sensitivities,4,Limit Consumption
+saccharin,Sweetener,Cancer,7,Avoid
+salatrim,Oil & Oil Substitutes,Digestive,3,Moderate Consumption
+silicon dioxide,Other,,1,Safe
+sodium benzoate,Preservative,Allergies & Sensitivities,4,Limit Consumption
+sodium diacetate,Preservative,,1,Safe
+sodium erythorbate,Preservative,,1,Safe
+sodium nitrate,Preservative,Cancer,7,Avoid
+sodium nitrite,Preservative,Cancer,7,Avoid
+sodium stearoyl lactylate,Other,,1,Safe
+sorbic acid,Preservative,,1,Safe
+sorbitan monostearate,Emulsifier,,1,Safe
+sorbitol,Sweetener,Digestive,3,Moderate Consumption
+starch,Thickener,,1,Safe
+stearic acid,Flavoring,,1,Safe
+stevia,Sweetener,,1,Safe
+sucralose,Sweetener,Cancer,7,Avoid
+sucrose acetate isobutyrate,Emulsifier,,1,Safe
+sulfites,Preservative,Allergies & Sensitivities,4,Limit Consumption
+sodium bisulfite,Preservative,Allergies & Sensitivities,4,Limit Consumption
+synthetic food dyes,Coloring,Neurological & Behavioral,7,Avoid
+tagatose,Sweetener,Digestive,3,Moderate Consumption
+tartaric acid,Preservative,,1,Safe
+taurine,Vitamins & Supplements,,1,Safe
+tbhq,Preservative,Cancer,7,Avoid
+thaumatin,Sweetener,,1,Safe
+titanium dioxide,Coloring,DNA damage,7,Avoid
+torula yeast,Flavoring,,1,Safe
+trans fat,Oil & Oil Substitutes,Cardiovascular,7,Avoid
+partially hydrogenated vegetable oil,Oil & Oil Substitutes,Cardiovascular,7,Avoid
+transglutaminase,Other,Food-borne Illness,5,Caution
+triacetin,Other,,1,Safe
+vanillin,Flavoring,,1,Safe
+vitamin b1,Vitamins & Supplements,,1,Safe
+vitamin b2,Vitamins & Supplements,,1,Safe
+vitamin b3,Vitamins & Supplements,,1,Safe
+vitamin b5,Vitamins & Supplements,,1,Safe
+vitamin b6,Vitamins & Supplements,,1,Safe
+vitamin c,Vitamins & Supplements,,1,Safe
+vitamin d,Vitamins & Supplements,,1,Safe
+vitamin e,Vitamins & Supplements,,1,Safe
+xylitol,Sweetener,Digestive,3,Moderate Consumption
+yellow prussiate of soda,Other,,1,Safe

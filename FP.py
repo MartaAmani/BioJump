@@ -186,6 +186,7 @@ def create_score(recipe, additives_db):
                 "category":   info["category"],
                 "health_concern": info["health_concern"],
                 "grade": grade,
+                "safety_label": info["safety_label"]
             })
 
     recipe_score = max(0, recipe_score) # the score cannot go below 0
