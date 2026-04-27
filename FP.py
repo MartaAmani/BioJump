@@ -401,8 +401,7 @@ def main():
         final_score = create_score(huds_data, additives_db)
         print_report(huds_data, final_score, preferences)
 
-        entry = Scored_Recipe(huds_data, final_score)
-        history.append(entry)
+        history.append(Scored_Recipe(huds_data, final_score))
         if len(history) >= 2:
             comparision_setup = input("\nWould you like to compare all searched recipes so far Type 'y' for yes, anything else for no.\n")
             if comparision_setup.lower() == "y":
