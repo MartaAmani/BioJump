@@ -261,7 +261,7 @@ def print_comparison(history, choice):
     elif choice == "S":
         best = min(history, key=lambda r: r.sodium if isinstance(r.sodium, (int, float)) else float('inf')) # Isinstance (object, type) evaluates to True if r.calories is an integer or float, else False. If it's not a number, we treat it as infinity so it won't be chosen as the best option.
     console.print(
-        f"\n  ✅ [bold green]Option with less calories: "
+        f"\n  ✅ [bold green]Option with less sodium: "
         f"{best.name} (Sodium: {best.sodium}[/bold green]\n")
 
 # Step 7: Report Card
