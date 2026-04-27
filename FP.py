@@ -360,7 +360,6 @@ def print_comparison(chosen, choice):
 
     # Highlight the best option
     if choice == "A":
-        if 
         best = max(chosen, key=lambda entry: entry.final_score) # max find the item in history with the max final_score
         console.print(
             f"\n  \N{Trophy} [bold green]Best option: "
