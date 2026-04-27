@@ -379,7 +379,6 @@ def print_comparison(history, choice):
             f"\n  ✅ [bold green]Option with more dietary fiber: "
             f"{best.name} (Dietary Fiber: {best.data.get('Dietary_Fiber', 'N/A')} grams)[/bold green]\n")
 
-
 # Step 0: Main Loop
 def main():
     # Welcome message
