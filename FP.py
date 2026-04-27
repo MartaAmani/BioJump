@@ -273,17 +273,17 @@ def clean_trailing(text):
     """Remove trailing whitespace, commas, and parentheses."""
     return re.sub(r'[\s,)(]+$', '', text)
 
-def print_report(recipe, final_score, preferences):
+def print_report(entry, preferences):
     """
     Print a report card using rich.
     Called from main() after every successful search.
     """
-    recipe_name = recipe.name
-    calories = recipe.data.get("Calories",   "N/A")
-    allergens = clean_trailing(recipe.get("Allergens", "") or "")
-    ingredients_list = recipe.get('Ingredient_List') or "N/A"
-    nutrition_score = recipe.final_score
-    additives_found = recipe.additives
+    recipe_name = entry.name
+    calories = entry.data.get("Calories",   "N/A")
+    allergens = clean_trailing(entry.get("Allergens", "") or "")
+    ingredients_list = entry.get('Ingredient_List') or "N/A"
+    nutrition_score = entry.final_score
+    additives_found = entry.additives
 
     # Header
     console.print()
