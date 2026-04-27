@@ -200,7 +200,7 @@ class Recipe:
         self.final_score = final_score["score"]
         self.additives = final_score["additives_found"]
         self.protein = data.get("Protein", "N/A")
-        self.calories = data.get("Calories", "N/A")
+        self.sodium = data.get("Sodium", "N/A")
         self.data = data # store the full data for comparision table
 
     def __str__(self):
@@ -242,8 +242,8 @@ def print_comparison(history, choice):
             table.add_row(r.name,score_str,str(len(r.additives)),)
         elif choice == "P":
             table.add_row(r.name,score_str,r.protein)
-        elif choice == "C":
-            table.add_row(r.name,score_str,r.calories)
+        elif choice == "S":
+            table.add_row(r.name,score_str,r.sodium)
 
     console.print(table)
 
@@ -258,11 +258,11 @@ def print_comparison(history, choice):
         console.print(
         f"\n  ✅ [bold green]Option with more protein: "
         f"{best.name} (Protein: {best.protein} grams[/bold green]\n")
-    elif choice == "C":
-        best = min(history, key=lambda r: r.calories if isinstance(r.calories, (int, float)) else float('inf')) # Isinstance (object, type) evaluates to True if r.calories is an integer or float, else False. If it's not a number, we treat it as infinity so it won't be chosen as the best option.
+    elif choice == "S":
+        best = min(history, key=lambda r: r.sodium if isinstance(r.sodium, (int, float)) else float('inf')) # Isinstance (object, type) evaluates to True if r.calories is an integer or float, else False. If it's not a number, we treat it as infinity so it won't be chosen as the best option.
     console.print(
         f"\n  ✅ [bold green]Option with less calories: "
-        f"{best.name} (Calories: {best.final_score}/100)[/bold green]\n")
+        f"{best.name} (Sodium: {best.sodium}[/bold green]\n")
 
 # Step 7: Report Card
 def clean_trailing(text):
