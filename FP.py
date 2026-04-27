@@ -250,6 +250,8 @@ def print_comparison(history, choice):
     # Highlight the best option
     if choice == "A":
         best = max(history, key=lambda r: r.final_score) # max find the item in history with the max final_score
+    elif choice == "P":
+        best = max(history, key=lambda r: r.protein if isinstance(r.protein, (int, float)) else 0)
     console.print(
         f"\n  ✅ [bold green]Best option: "
         f"{best.name} (Score: {best.final_score}/100)[/bold green]\n")
