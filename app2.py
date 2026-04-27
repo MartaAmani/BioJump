@@ -25,3 +25,5 @@ if st.button("Search"):
         st.dataframe(final_score["additives_found"])  # ← automatic table!
     else:
         st.success("✅ No ultra-processed additives found!")
+if __name__ == "__main__":
+    app.run(debug=True, use_reloader=False)
