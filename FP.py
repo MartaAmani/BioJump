@@ -429,10 +429,18 @@ def main():
             comparision_setup = input("\nWould you like to compare all searched recipes so far Type 'y' for yes, anything else for no.\n")
             if comparision_setup.lower() == "y":
                 # Show numbered list of searched recipes
-                console.print("\nRecipes searched so far:")
-                for i, entry in enumerate(history):
-                    console.print(f"  {i+1}. {entry.name}")
                 if len(history) > 2:
+                    console.print("\nRecipes searched so far:")
+                    for i, entry in enumerate(history):
+                        console.print(f"  {i+1}. {entry.name}")
+                    # The student/user decides which to compare
+                    while True:
+                        choice_compare = input("\nEnter the number of the recipe you want to compare (e.g. 1,2, etc.) ").strip()
+                        
+
+
+
+
                     which.append = input("\nWhich recipe would you like to compare?")
                     choice = input("\nWhat would you like to compare? Type 'A' for additives found, 'P' for Protein, 'S' for Sodium, 'F' for Dietary Fiber.\n")
                 print_comparison(history, which, choice)
