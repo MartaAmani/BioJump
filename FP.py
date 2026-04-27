@@ -263,7 +263,7 @@ def print_report(entry, preferences):
     # Dietary preferences
     banned_ingredients = []
     if preferences:
-        for _, info in preferences.items():
+        for key, info in preferences.items(): # I could also use - to say that we ignore the key
             if info["enabled"]:
                 for ingredient in get_wordlist(ingredients_list, remove_stopwords=False):
                     if ingredient in info["forbidden"]:
