@@ -193,15 +193,15 @@ def create_score(recipe, additives_db):
     return {"score": recipe_score, "additives_found": additives_found,}
 
 # Step 6: Create a hisotry of the recipes and compare them
-class Recipe:
+class Scored_Recipe:
     """Stores one searched recipe for session history."""
-    def __init__(self, data, final_score):
-        self.name = data.get("Recipe_Name")
+    def __init__(self, huds_data, final_score):
+        self.name = huds_data.get("Recipe_Name")
         self.final_score = final_score["score"]
         self.additives = final_score["additives_found"]
-        self.protein = data.get("Protein", "N/A")
-        self.sodium = data.get("Sodium", "N/A")
-        self.data = data # store the full data for comparision table
+        self.protein = huds_data.get("Protein", "N/A")
+        self.sodium = huds_data.get("Sodium", "N/A")
+        self.data = huds_data # store the full data for comparision table
 
     def __str__(self):
         return f"{self.name:<45}  SCORE: {self.final_score} / 100"
@@ -392,16 +392,16 @@ def main():
             console.print(f"[red]Could not connect to the HUDS server. Please try again.[/red]")
             continue # API failed
 
-        recipe = find_recipe(search, data)
+        huds_data = find_recipe(search, data)
 
-        if not recipe:
+        if not huds_data:
             console.print(f'[red]No recipe found for "{search}". Please try another search term.[/red]')
             continue # no recipe found
 
-        final_score = create_score(recipe, additives_db)
-        print_report(recipe, final_score, preferences)
+        final_score = create_score(huds_data, additives_db)
+        print_report(huds_data, final_score, preferences)
 
-        history.append(Recipe(recipe, final_score))
+        history.append(Scored_Recipe(huds_data, final_score))
         if len(history) >= 2:
             comparision_setup = input("\nWould you like to compare all searched recipes so far Type 'y' for yes, anything else for no.\n")
             if comparision_setup.lower() == "y":
