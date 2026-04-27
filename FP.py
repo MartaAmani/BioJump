@@ -176,7 +176,7 @@ def load_data():
             "category":   row["category"].strip(),
             "health_concern": row["health_concern"].strip(),
             "grade": int(row["grade"]) if row["grade"].strip() else 0,
-            "safety label": row["safety_label"].strip
+            "safety_label": row["safety_label"].strip
             }
     return additives_db
 
@@ -266,8 +266,8 @@ def print_report(entry, preferences):
             for ingredient in get_wordlist(ingredients_list, remove_stopwords=False):
                 if ingredient in info["forbidden"]:
                     banned_ingredients.append(ingredient)
-        console.print(f"[bold yellow]This recipe contains the following ingredients that may not align with your dietary preferences: [/bold yellow]
-                      [yellow]{','.join(set(banned_ingredients))}[/bold yellow]")
+        console.print(f"[bold yellow]This recipe contains the following ingredients that may not align with your dietary preferences: [/bold yellow]"
+                      f"[yellow]{','.join(set(banned_ingredients))}[/yellow]")
 
     # Additives table
     console.print()
