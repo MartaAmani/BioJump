@@ -161,6 +161,7 @@ def load_data():
             "category":   row["category"].strip(),
             "health_concern": row["health_concern"].strip(),
             "grade": int(row["grade"]) if row["grade"].strip() else 0,
+            "safety label": row["safety_label"].strip
             }
     return additives_db
 
@@ -193,7 +194,7 @@ def create_score(recipe, additives_db):
     return {"score": recipe_score, "additives_found": additives_found,}
 
 # Step 6: Create a hisotry of the recipes and compare them
-class Scored_Recipe:
+class ScoredRecipe:
     """Stores one searched recipe for session history."""
     def __init__(self, huds_data, final_score):
         self.name = huds_data.get("Recipe_Name")
@@ -399,9 +400,8 @@ def main():
             continue # no recipe found
 
         final_score = create_score(huds_data, additives_db)
-        entry = Scored_Recipe(huds_data, final_score)
+        entry = ScoredRecipe(huds_data, final_score)
         print_report(entry, preferences)
-
         history.append(entry)
         if len(history) >= 2:
             comparision_setup = input("\nWould you like to compare all searched recipes so far Type 'y' for yes, anything else for no.\n")
