@@ -151,12 +151,12 @@ def dietary_preference():
 # Part 4: CSV Loader
 def load_data():
     """ Load data from CSV file """
-    additives_db = {}
+    additives_db = {} # dictonary of dictonaries
     # Load additives
     with open('additives.csv', mode='r', newline='', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
-            name = row["additive"].strip().lower()
+            name = row["additive"].strip().lower() # we create a dictionary where: the key is the additive name, the value is another dictionary with its details
             additives_db[name] = {
             "category":   row["category"].strip(),
             "health_concern": row["health_concern"].strip(),
