@@ -344,6 +344,8 @@ def print_comparison(history, choice):
         table.add_column("Protein (g)", style="white",  min_width=12)
     elif choice == "S":
         table.add_column("Sodium (mg)", style="white",  min_width=12)
+    elif choice == "F":
+        table.add_column("Dietary Fiber (g)", style="white",  min_width=18)
 
     for entry in history:
         color, icon = score_color_icon(entry.final_score)
@@ -361,22 +363,22 @@ def print_comparison(history, choice):
     if choice == "A":
         best = max(history, key=lambda entry: entry.final_score) # max find the item in history with the max final_score
         console.print(
-            f"\n  ✅ [bold green]Best option: "
+            f"\n  \N{Trophy} [bold green]Best option: "
             f"{best.name} (Score: {best.final_score}/100)[/bold green]\n")
     elif choice == "P":
         best = max(history, key=lambda entry: entry.protein if isinstance(entry.protein, (int, float)) else 0) # Isinstance (object, type) evaluates to True if r.protein is an integer or float, else False.
         console.print(
-            f"\n  ✅ [bold green]Option with more protein: "
+            f"\n  \N{Trophy} [bold green]Option with more protein: "
             f"{best.name} (Protein: {best.protein} grams)[/bold green]\n")
     elif choice == "S":
         best = min(history, key=lambda entry: entry.sodium if isinstance(entry.sodium, (int, float)) else float('inf')) # Isinstance (object, type) evaluates to True if r.calories is an integer or float, else False. If it's not a number, we treat it as infinity so it won't be chosen as the best option.
         console.print(
-            f"\n  ✅ [bold green]Option with less sodium: "
+            f"\n  \N{Trophy} [bold green]Option with less sodium: "
             f"{best.name} (Sodium: {best.sodium})[/bold green]\n")
     elif choice == "F":
         best = max(history, key=lambda entry: entry.data.get("Dietary_Fiber", 0) if isinstance(entry.data.get("Dietary_Fiber", 0), (int, float)) else 0)
         console.print(
-            f"\n  ✅ [bold green]Option with more dietary fiber: "
+            f"\n  \N{Trophy} [bold green]Option with more dietary fiber: "
             f"{best.name} (Dietary Fiber: {best.data.get('Dietary_Fiber', 'N/A')} grams)[/bold green]\n")
 
 # Step 0: Main Loop
