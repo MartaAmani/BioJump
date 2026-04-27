@@ -239,31 +239,31 @@ def print_comparison(history, choice):
     elif choice == "S":
         table.add_column("Sodium (mg)", style="white",  min_width=12)
 
-    for r in history:
-        color, icon = score_color_icon(r.final_score)
-        score_str = f"{icon} [{color}]{r.final_score}/100[/{color}]"
+    for entry in history:
+        color, icon = score_color_icon(entry.final_score)
+        score_str = f"{icon} [{color}]{entry}/100[/{color}]"
         if choice == "A":
-            table.add_row(r.name,score_str,str(len(r.additives)),)
+            table.add_row(entry.name,score_str,str(len(entry.additives)),)
         elif choice == "P":
-            table.add_row(r.name,score_str,r.protein)
+            table.add_row(entry.name,score_str,entry.protein)
         elif choice == "S":
-            table.add_row(r.name,score_str,r.sodium)
+            table.add_row(entry.name,score_str,entry.sodium)
 
     console.print(table)
 
     # Highlight the best option
     if choice == "A":
-        best = max(history, key=lambda r: r.final_score) # max find the item in history with the max final_score
+        best = max(history, key=lambda entry: entry.final_score) # max find the item in history with the max final_score
         console.print(
         f"\n  ✅ [bold green]Best option: "
         f"{best.name} (Score: {best.final_score}/100)[/bold green]\n")
     elif choice == "P":
-        best = max(history, key=lambda r: r.protein if isinstance(r.protein, (int, float)) else 0) # Isinstance (object, type) evaluates to True if r.protein is an integer or float, else False.
+        best = max(history, key=lambda entry: entry.protein if isinstance(entry.protein, (int, float)) else 0) # Isinstance (object, type) evaluates to True if r.protein is an integer or float, else False.
         console.print(
         f"\n  ✅ [bold green]Option with more protein: "
         f"{best.name} (Protein: {best.protein} grams[/bold green]\n")
     elif choice == "S":
-        best = min(history, key=lambda r: r.sodium if isinstance(r.sodium, (int, float)) else float('inf')) # Isinstance (object, type) evaluates to True if r.calories is an integer or float, else False. If it's not a number, we treat it as infinity so it won't be chosen as the best option.
+        best = min(history, key=lambda entry: entry.sodium if isinstance(entry.sodium, (int, float)) else float('inf')) # Isinstance (object, type) evaluates to True if r.calories is an integer or float, else False. If it's not a number, we treat it as infinity so it won't be chosen as the best option.
     console.print(
         f"\n  ✅ [bold green]Option with less sodium: "
         f"{best.name} (Sodium: {best.sodium}[/bold green]\n")
@@ -401,7 +401,8 @@ def main():
         final_score = create_score(huds_data, additives_db)
         print_report(huds_data, final_score, preferences)
 
-        history.append(Scored_Recipe(huds_data, final_score))
+        entry = Scored_Recipe(huds_data, final_score)
+        history.append(entry)
         if len(history) >= 2:
             comparision_setup = input("\nWould you like to compare all searched recipes so far Type 'y' for yes, anything else for no.\n")
             if comparision_setup.lower() == "y":
