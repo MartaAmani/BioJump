@@ -281,11 +281,12 @@ def print_report(entry, preferences):
             border_style = "red",
             header_style = "bold red",
             show_lines   = True,)
-        table.add_column("Additive",style="white", min_width=28)
+        table.add_column("Additive".capitalize(),style="white", min_width=28)
         table.add_column("Purpose", style="yellow",min_width=18)
         if any(item["health_concern"] for item in additives_found):
-            table.add_column("Health Concern", style="dim", min_width=25)
+            table.add_column("Health Concern", style="white", min_width=25)
             has_health_concerns = True
+        table.add_column("Safety Label", style="blue",min_width=18)
 
         for item in additives_found:
             if has_health_concerns:
