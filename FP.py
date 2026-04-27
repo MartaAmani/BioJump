@@ -323,11 +323,8 @@ def print_report(entry, preferences):
     console.print()
 
 # Step 8: Comparison Table
-def print_comparison(history, choice):
+def print_comparison(history, choice, which):
     """Print a side-by-side comparison table of all searched recipes."""
-    if len(history) < 2:
-        console.print("[yellow]Need at least 2 recipes to compare.[/yellow]")
-        return
 
     table = Table(
         title = "Recipe Comparison",
