@@ -263,13 +263,13 @@ def print_report(entry, preferences):
     # Dietary preferences
     banned_ingredients = []
     if preferences:
-        for key, info in preferences.items():
+        for _, info in preferences.items():
             if info["enabled"]:
                 for ingredient in get_wordlist(ingredients_list, remove_stopwords=False):
                     if ingredient in info["forbidden"]:
                         banned_ingredients.append(ingredient)
     if banned_ingredients:
-        console.print(f"[bold deep_pink4]\nThis recipe contains the following ingredients that may not align with your dietary preferences: [/bold deep_pink4]"
+        console.print(f"[bold deep_pink4]\nThis recipe contains the following ingredients that may not align with your dietary preferences:\n [/bold deep_pink4]"
                       f"[deep_pink4]{', '.join(item.capitalize() for item in set(banned_ingredients))}[/deep_pink4]")
 
     # Additives table
@@ -356,6 +356,8 @@ def print_comparison(history, choice):
             table.add_row(entry.name,score_str,entry.protein)
         elif choice == "S":
             table.add_row(entry.name,score_str,entry.sodium)
+        elif choice == "F":
+            table.add_row(entry.name,score_str,entry.dietary_fiber)
 
     console.print(table)
 
