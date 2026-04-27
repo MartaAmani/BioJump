@@ -36,7 +36,7 @@ To run the code, the user needs to type python3 FP.py
 
 - List of ultra-processed additives in additives.csv is based on:
 
-    Monteiro CA, Cannon G, Levy RB, Moubarac JC, Louzada ML, Rauber F, Khandpur N, Cediel G, Neri D, Martinez-Steele E, Baraldi LG, Jaime PC. Ultra-processed foods: what they are and how to identify them. Public Health Nutr. 2019 Apr;22(5):936-941. doi: 10.1017/S1368980018003762. Epub 2019 Feb 12. PMID: 30744710; PMCID: PMC10260459.
+    https://www.cspi.org/page/chemical-cuisine-food-additive-safety-ratings
 
 - Harvard Dining API:
 
