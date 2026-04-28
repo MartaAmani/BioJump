@@ -269,7 +269,7 @@ def print_report(entry, preferences):
                     if ingredient in info["forbidden"]:
                         banned_ingredients.append(ingredient)
     if banned_ingredients:
-        console.print(f"[bold deep_pink4]\nThis recipe contains the following ingredients that may not align with :\n [/bold deep_pink4]"
+        console.print(f"[bold deep_pink4]\nThis recipe contains the following ingredients that may not align with your dietary preferences:\n [/bold deep_pink4]"
                       f"[deep_pink4]{', '.join(item.capitalize() for item in set(banned_ingredients))}[/deep_pink4]")
 
     # Additives table
