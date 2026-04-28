@@ -265,14 +265,17 @@ def print_report(entry, preferences):
     if preferences:
         for key, info in preferences.items(): # I could also use - to say that we ignore the key
             if info["enabled"]:
+                found = []
                 for ingredient in get_wordlist(ingredients_list, remove_stopwords=False):
                     if ingredient in info["forbidden"]:
                         banned_ingredients.append(ingredient)
+                if found:
+                    banned_by_preference[key] = found
     if banned_ingredients:
         console.print(f"[bold deep_pink4]\nThis recipe contains the following ingredients that may not align with {key}:\n [/bold deep_pink4]"
                       f"[deep_pink4]{', '.join(item.capitalize() for item in set(banned_ingredients))}[/deep_pink4]")
     else:
-        console.print(f"\n[bold green]This recipe does not contain any ingredients that conflict with your dietary preferences![/bold green]")
+        console.print(f"\n[bold green]\N{OK Hand: Medium-Light Skin Tone}This recipe does not contain any ingredients that conflict with your dietary preferences![/bold green]")
 
     # Additives table
     console.print()
