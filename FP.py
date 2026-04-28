@@ -385,8 +385,8 @@ def main():
     # Welcome message
     # Header
     text = Text(justify="center")
-    text.append("HUDS Nutrition Scorer", style="bold royal_blue1")
-    text.append("\nMarta Amani  ·  Final Project CS32", style="dim white")
+    text.append("HUDS Nutrition Scorer", style="bold light_slate_blue")
+    text.append("\nMarta Amani  ·  Final Project CS32", style="dim medium_purple3")
     console.print(Panel(
         text,
         border_style = "light_slate_blue",
