@@ -441,6 +441,12 @@ def main():
                     while True:
                         choice_compare = input("\nEnter the number of the recipes you want to compare (e.g. 1,2, etc.) ").strip()
                         choice_compare_index = choice_compare.split(",")
+
+                        if not all(index.strip().isdigit() and 1 <= int(index.strip()) <= len(history)
+                                   for index in choice_compare_index):
+                            console.print("[red]Invalid input. Please enter valid number between 1 and {len(history)}[/red]")
+                            continue
+
                         chosen = [] # reset after each attempt
                         for index in choice_compare_index:
                             chosen.append(history[int(index.strip())-1])
