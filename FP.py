@@ -436,7 +436,7 @@ def main():
                         console.print(f"  {i+1}. {entry.name}")
                     # The student/user decides which to compare
                     while True:
-                        choice_compare = input("\nEnter the number of the recipe you want to compare (e.g. 1,2, etc.) ").strip()
+                        choice_compare = input("\nEnter the number of the recipes you want to compare (e.g. 1,2, etc.) ").strip()
                         choice_compare_index = choice_compare.split(",")
                         for index in choice_compare_index:
                             chosen.append([history[int(index)-1]])
