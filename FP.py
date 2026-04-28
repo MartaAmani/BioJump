@@ -440,11 +440,7 @@ def main():
                         for index in choice_compare_index:
                             chosen = [history[int(index)-1]]
                             break
-        while True:
-            if len(history) > 2:
-                    console.print("\nRecipes selected for comparison:")
-                    for i, entry in enumerate(chosen):
-                        console.print(f"  {i+1}. {entry.name}")
+            while True:
                 choice = input("\nWhat would you like to compare? Type 'A' for additives found, 'P' for Protein, 'S' for Sodium, 'F' for Dietary Fiber.\n").strip().upper()
                 if choice in ["A", "P", "S", "F"]:
                     break
