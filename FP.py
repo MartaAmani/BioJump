@@ -439,7 +439,7 @@ def main():
                         choice_compare = input("\nEnter the number of the recipe you want to compare (e.g. 1,2, etc.) ").strip()
                         choice_compare_index = choice_compare.split(",")
                         for index in choice_compare_index:
-                            chosen = [history[int(index)-1]]
+                            chosen.append([history[int(index)-1]])
                             break
             while True:
                 choice = input("\nWhat would you like to compare? Type 'A' for additives found, 'P' for Protein, 'S' for Sodium, 'F' for Dietary Fiber.\n").strip().upper()
