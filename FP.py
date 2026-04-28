@@ -435,7 +435,7 @@ def main():
                 if len(history) > 2:
                     chosen = [] # if there are more than 2 recipes, the user choose which ones to compare
                     console.print("\nRecipes searched so far:")
-                    for i, entry in enumerate(history):
+                    for i, hist_entry in enumerate(history):
                         console.print(f"  {i+1}. {entry.name}")
                     # The student/user decides which to compare
                     while True:
