@@ -385,28 +385,24 @@ def main():
     # Welcome message
     # Header
     text = Text(justify="center")
-    text.append("HUDS Nutrition Scorer", style="bold plum2")
+    text.append("HUDS Nutrition Scorer", style="bold royal_blue1")
     text.append("\nMarta Amani  ·  Final Project CS32", style="dim white")
     console.print(Panel(
         text,
-        border_style = "plum2",
+        border_style = "light_slate_blue",
         padding      = (1, 4),
         width        = 45
     ))
 
-
-    # Step 4
     additives_db = load_data()
     preferences = dietary_preference()
     history = [] # store the history of searched recipes in this session
-
-    #prefereces = dietary_preference()
 
     while True:
         search = input("Which recipe would you like to search? (or 'q' to quit): ").strip() # we strip so that we can still look for a match even
                                                                                             # if the user added a space at the beginnig by accident
         if search.lower() == "q" or search.lower() == "quit" or search.lower() == "no" or search.lower() == "n":
-            console.print("\nGoodbye! ")
+            console.print("[bold light_slate_blue]\nGoodbye![/bold light_slate_blue]")
             break
 
         data = connection(search)
