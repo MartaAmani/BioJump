@@ -257,7 +257,7 @@ def print_report(entry, preferences):
 
     # Main output
     max_len = len("Ingredients:")
-    console.print(textwrap.fill(ingredients_list.strip(" \t\n,)( "), width=80, initial_indent="Ingredients: ",subsequent_indent=" " * 13))
+    console.print(textwrap.fill(ingredients_list.strip(" \t\n,( "), width=80, initial_indent="Ingredients: ",subsequent_indent=" " * 13))
     console.print(f"{'Allergens:':<{max_len}} {allergens}")
 
     # Dietary preferences
@@ -448,7 +448,7 @@ def main():
                     if choice in ["A", "P", "S", "F"]:
                         break
                     console.print("[red]Invalid choice. Please enter 'A', 'P', 'S', or 'F'.[/red]")
-            print_comparison(chosen, choice)
+                print_comparison(chosen, choice)
 
 if __name__ == "__main__":
     main()
