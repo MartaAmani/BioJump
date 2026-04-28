@@ -443,11 +443,11 @@ def main():
                         if len(chosen) >= 2:
                             break
                         console.print("[red]Please enter at least two valid numbers separated by commas.[/red]")
-            while True:
-                choice = input("\nWhat would you like to compare? Type 'A' for additives found, 'P' for Protein, 'S' for Sodium, 'F' for Dietary Fiber.\n").strip().upper()
-                if choice in ["A", "P", "S", "F"]:
-                    break
-                console.print("[red]Invalid choice. Please enter 'A', 'P', 'S', or 'F'.[/red]")
+                while True:
+                    choice = input("\nWhat would you like to compare? Type 'A' for additives found, 'P' for Protein, 'S' for Sodium, 'F' for Dietary Fiber.\n").strip().upper()
+                    if choice in ["A", "P", "S", "F"]:
+                        break
+                    console.print("[red]Invalid choice. Please enter 'A', 'P', 'S', or 'F'.[/red]")
             print_comparison(chosen, choice)
 
 if __name__ == "__main__":
