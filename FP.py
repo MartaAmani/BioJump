@@ -446,7 +446,7 @@ def main():
                     break
                 console.print("[red]Invalid choice. Please enter 'A', 'P', 'S', or 'F'.[/red]")
 
-        print_comparison(chosen, choice)
+            print_comparison(chosen, choice)
 
 if __name__ == "__main__":
     main()
