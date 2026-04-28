@@ -439,8 +439,10 @@ def main():
                         choice_compare = input("\nEnter the number of the recipes you want to compare (e.g. 1,2, etc.) ").strip()
                         choice_compare_index = choice_compare.split(",")
                         for index in choice_compare_index:
-                            chosen.append(history[int(index)-1])
+                            chosen.append(history[int(index.strip())-1])
+                        if len(chosen) >= 2:
                             break
+                        console.print("[red]Please enter at least two valid numbers separated by commas.[/red]")
             while True:
                 choice = input("\nWhat would you like to compare? Type 'A' for additives found, 'P' for Protein, 'S' for Sodium, 'F' for Dietary Fiber.\n").strip().upper()
                 if choice in ["A", "P", "S", "F"]:
