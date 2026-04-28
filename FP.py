@@ -428,6 +428,7 @@ def main():
         if len(history) >= 2:
             comparision_setup = input("\nWould you like to compare all searched recipes so far Type 'y' for yes, anything else for no.\n")
             if comparision_setup.lower() == "y":
+                chosen = history # by default we compare all the searched recipes
                 # Show numbered list of searched recipes
                 if len(history) > 2:
                     console.print("\nRecipes searched so far:")
