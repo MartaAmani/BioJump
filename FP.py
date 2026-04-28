@@ -143,7 +143,7 @@ def dietary_preference():
         console.print("\nDietary filters (optional). Type 'y' for yes, anything else for no.")
         preferences = {
             "vegan": {
-                "enabled": input("Vegan? (y/n): ").lower() == "y",
+                "enabled": input("Vegan? (y/n): ").lower() == "y", # we ruturn True if the user types y, False otherwise
                 "forbidden": ["meat", "chicken", "fish", "egg", "milk", "cheese", "butter", "yogurt", "honey"],
             },
             "vegetarian": {
