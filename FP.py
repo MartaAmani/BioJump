@@ -425,10 +425,13 @@ def main():
         entry = ScoredRecipe(huds_data, final_score)
         print_report(entry, preferences)
         history.append(entry)
+
         if len(history) >= 2:
-            comparision_setup = input("\nWould you like to compare all searched recipes so far Type 'y' for yes, anything else for no.\n")
-            if comparision_setup.lower() == "y":
-                # Show numbered list of searched recipes
+            while True:
+                comparision_setup = input("\nWould you like to compare all searched recipes so far Type 'y' for yes, anything else for no.\n")
+                if comparision_setup.lower() != "y":
+                    break
+                # Show numbered list of searched recipes. Let the user chose
                 if len(history) > 2:
                     chosen = [] # if there are more than 2 recipes, the user choose which ones to compare
                     console.print("\nRecipes searched so far:")
@@ -447,6 +450,7 @@ def main():
                 else:
                     chosen = history # by default we compare all the searched recipes
 
+                # Ask the user what they want to compare
                 while True:
                     choice = input("\nWhat would you like to compare? Type 'A' for additives found, 'P' for Protein, 'S' for Sodium, 'F' for Dietary Fiber.\n").strip().upper()
                     if choice in ["A", "P", "S", "F"]:
