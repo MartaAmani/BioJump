@@ -442,6 +442,8 @@ def main():
                         choice_compare = input("\nEnter the number of the recipes you want to compare (e.g. 1,2, etc.) ").strip()
                         choice_compare_index = choice_compare.split(",")
 
+                        # we check with .isdigit() that the user input is a number
+                        # wee check that the number is between 1 and the length of the history list (inclusive)
                         if not all(index.strip().isdigit() and 1 <= int(index.strip()) <= len(history)
                                    for index in choice_compare_index):
                             console.print("[red]Invalid input. Please enter valid number between 1 and {len(history)}[/red]")
