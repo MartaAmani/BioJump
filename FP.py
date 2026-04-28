@@ -350,11 +350,11 @@ def print_comparison(chosen, choice):
         if choice == "A":
             table.add_row(entry.name,score_str,str(len(entry.additives)),)
         elif choice == "P":
-            table.add_row(entry.name,score_str,entry.protein)
+            table.add_row(entry.name,score_str,str(entry.protein))
         elif choice == "S":
-            table.add_row(entry.name,score_str,entry.sodium)
+            table.add_row(entry.name,score_str,str(entry.sodium))
         elif choice == "F":
-            table.add_row(entry.name,score_str,entry.dietary_fiber)
+            table.add_row(entry.name,score_str,str(entry.dietary_fiber))
 
     console.print(table)
 
@@ -403,9 +403,9 @@ def main():
     #prefereces = dietary_preference()
 
     while True:
-        search = input("Which recipe would you like to search? (or 'q' to quit): ").strip().lower() # we strip so that we can still look for a match even
+        search = input("Which recipe would you like to search? (or 'q' to quit): ").strip() # we strip so that we can still look for a match even
                                                                                             # if the user added a space at the beginnig by accident
-        if search.lower() == "q" or search.lower() == "quit" or search.lower() == "no" or search.lower() == "n"  :
+        if search.lower() == "q" or search.lower() == "quit" or search.lower() == "no" or search.lower() == "n":
             console.print("\nGoodbye! ")
             break
 
@@ -446,7 +446,7 @@ def main():
                         # wee check that the number is between 1 and the length of the history list (inclusive)
                         if not all(index.strip().isdigit() and 1 <= int(index.strip()) <= len(history)
                                    for index in choice_compare_index):
-                            console.print("[red]Invalid input. Please enter valid number between 1 and {len(history)}[/red]")
+                            console.print("f[red]Invalid input. Please enter valid number between 1 and {len(history)}[/red]")
                             continue
 
                         chosen = [] # reset after each attempt
