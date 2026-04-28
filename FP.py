@@ -403,7 +403,7 @@ def main():
     #prefereces = dietary_preference()
 
     while True:
-        search = input("Which recipe would you like to search? (or 'q' to quit): ").strip().lower() # we strip so that we can still look for a math
+        search = input("Which recipe would you like to search? (or 'q' to quit): ").strip().lower() # we strip so that we can still look for a match even
                                                                                             # if the user added a space at the beginnig by accident
         if search.lower() == "q" or search.lower() == "quit" or search.lower() == "no" or search.lower() == "n"  :
             console.print("\nGoodbye! ")
