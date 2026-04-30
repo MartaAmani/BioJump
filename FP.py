@@ -22,11 +22,11 @@ stop_word_list = ["a", "an", "the", "and", "or", "of","with", "in", "on", "for",
 punctuation = string.punctuation.replace('*', '')
 
 def clean_trailing(text):
-    """Remove trailing whitespace, commas, and parentheses."""
+    """ Remove trailing whitespace, commas, and parentheses."""
     return re.sub(r'[\s,)(]+$', '', text)
 
 def get_wordlist(text, remove_stopwords=True):
-    """Convert text into a list of clean lowercase words."""
+    """ Convert text into a list of clean lowercase words."""
     text = text.lower()
     # Extract words from text
     pattern = '^[{0}]+|[{0}]+$'.format(punctuation) # remove punctuation only from the beginning or end
@@ -39,13 +39,13 @@ def get_wordlist(text, remove_stopwords=True):
         return words
 
 def partial_match(search, recipe_name):
-    """Return True if the search appears in any recipe name"""
+    """ Return True if the search appears in any recipe name"""
     search_words = get_wordlist(search)
     recipe_words = get_wordlist(recipe_name)
     return any(word in recipe_words for word in search_words) # True if at least one search word is found in the recipe word list
 
 def score_color_icon(final_score):
-    ''' choose color and icon based on the nutrition score'''
+    """ Choose color and icon based on the nutrition score"""
     if final_score >= 85:
         return "green", "\N{Large Green Circle}"
     elif final_score >= 60:
@@ -55,11 +55,35 @@ def score_color_icon(final_score):
     else:
         return"red", "\N{Large Red Circle}"
 
+def format_safety_label(label):
+    """ Format the safety label with color based on its value """
+    colors = {
+        "Avoid":                "red3",
+        "Caution":              "dark_orange",
+        "Limit Consumption":    "salmon1",
+        "Moderate Consumption": "yellow1",
+        "Safe":                 "green4",
+    }
+    color = colors.get(label, "white")
+    return f"[{color}]{label.capitalize()}[/{color}]"
+
+def to_number(value, default_if_missing):
+    """
+    Extract first number from value. If the value is already int/float, it just return it.
+    Other it returns default_if_missing.
+    """
+    if isinstance(value, (int, float)):
+        return value
+    s = str(value)
+    m = re.search(r"[-+]?\d*\.?\d+", s)
+    if not m:
+        return default_if_missing
+    return float(m.group(0))
 
 # Part 1: API conection
 load_dotenv()
 def connection(recipe_name):
-    """Fetch recipe data from HUDS API and """
+    """ Fetch recipe data from HUDS API based on the recipe name """
 
     console.print('Searching recipe from the Harvard University Dining Service\n')
 
@@ -88,7 +112,11 @@ def connection(recipe_name):
 
 # Part 2:  Recipe Search and match
 def find_recipe(recipe_name, data):
-    ''' Search a list of recipe dicts for the best match to 'search'.'''
+    """
+    Search a list of recipes for the best match to
+    the input name, and return the recipe data.
+    If no match is found, return None.
+    """
     search = recipe_name.upper() # all the names are uppercase
 
     # Exact match between the input name and one name in the list
@@ -137,10 +165,10 @@ def find_recipe(recipe_name, data):
 
 # Part 3: Dietary Preference Collector
 def dietary_preference():
-    """Collect dietary filters from the user."""
+    """ Collect dietary filters from the user """
     dietrary_preference = input("\nDo you have any dietary preferences? Type 'y' for yes, anything else for no.\n")
     if dietrary_preference.lower() == "y":
-        console.print("\nDietary filters (optional). Type 'y' for yes, anything else for no.")
+        console.print("\nType 'y' for yes, anything else for no.")
         preferences = {
             "vegan": {
                 "enabled": input("Vegan? (y/n): ").lower() == "y", # we ruturn True if the user types y, False otherwise
@@ -173,16 +201,16 @@ def load_data():
         for row in reader:
             name = row["additive"].strip().lower() # we create a dictionary where: the key is the additive name, the value is another dictionary with its details
             additives_db[name] = {
-            "category":   row["category"].strip(),
-            "health_concern": row["health_concern"].strip(),
-            "grade": int(row["grade"]) if row["grade"].strip() else 0,
-            "safety_label": row["safety_label"].strip()
+                "category":   row["category"].strip(),
+                "health_concern": row["health_concern"].strip(),
+                "grade": int(row["grade"]) if row["grade"].strip() else 0,
+                "safety_label": row["safety_label"].strip()
             }
     return additives_db
 
 # Step 5: Processed food score
 def create_score(recipe, additives_db):
-    """Score recipe based on ultra-processed additives found."""
+    """ Score recipe based on ultra-processed additives found """
     # grab the list of the ingredients
     raw_ingredients = recipe.get("Ingredient_List", "") or ""
     raw_ingredients = raw_ingredients.lower()
@@ -208,13 +236,13 @@ def create_score(recipe, additives_db):
 
     return {"score": recipe_score, "additives_found": additives_found,}
 
-# Step 6: create a class to store the resiult + score of each searched recipe,
+# Step 6: create a class to store the results + score of each searched recipe,
 class ScoredRecipe:
-    """ Create a class to store the resiult + score of each searched recipe,
+    """ Create a class to store the result + score of each searched recipe,
     so that we can create a history andcompare them later, ans use it to print
     the report card and the comparision table in a more organized way.
-    We use this clas in main() to create an entry for each searched recipe a
-    nd store it in the history list; in print_report() to print the report card;
+    We use this clas in main() to create an entry for each searched recipe and
+    store it in the history list; in print_report() to print the report card;
     and in print_comparison() to print the comparision table."""
 
     def __init__(self, huds_data, final_score):
@@ -282,12 +310,12 @@ def print_report(entry, preferences):
             border_style = "red",
             header_style = "bold red",
             show_lines   = True,)
-        table.add_column("Additive",style="white", min_width=28)
-        table.add_column("Purpose", style="yellow",min_width=18)
+        table.add_column("Additive",style="white", min_width=18)
+        table.add_column("Purpose", style="",min_width=18)
         if any(item["health_concern"] for item in additives_found):
             table.add_column("Health Concern", style="white", min_width=25)
             has_health_concerns = True
-        table.add_column("Safety Label", style="blue",min_width=18)
+        table.add_column("Safety Label",min_width=18)
 
         for item in additives_found:
             if has_health_concerns:
@@ -295,12 +323,12 @@ def print_report(entry, preferences):
                     item["name"].title(),
                     item["category"],
                     item["health_concern"],
-                    item["safety_label"],)
+                    format_safety_label(item["safety_label"]),)
             else:
                 table.add_row(
                     item["name"],
                     item["category"],
-                    item["safety_label"],)
+                    format_safety_label(item["safety_label"]),)
 
         console.print(table)
 
@@ -365,19 +393,19 @@ def print_comparison(chosen, choice):
             f"\n  \N{Trophy} [bold green]Best option: "
             f"{best.name} (Score: {best.final_score}/100)[/bold green]\n")
     elif choice == "P":
-        best = max(chosen, key=lambda entry: entry.protein if isinstance(entry.protein, (int, float)) else 0) # Isinstance (object, type) evaluates to True if r.protein is an integer or float, else False.
+        best = max(chosen, key=lambda entry: (to_number(entry.protein, 0), entry.final_score)) # Isinstance (object, type) evaluates to True if r.protein is an integer or float, else False.
         console.print(
-            f"\n  \N{Trophy} [bold green]Option with more protein: "
+            f"\n  \N{Trophy} [bold green]Option with more protein (or higher score): "
             f"{best.name} (Protein: {best.protein} grams)[/bold green]\n")
     elif choice == "S":
-        best = min(chosen, key=lambda entry: entry.sodium if isinstance(entry.sodium, (int, float)) else float('inf')) # Isinstance (object, type) evaluates to True if r.calories is an integer or float, else False. If it's not a number, we treat it as infinity so it won't be chosen as the best option.
+        best = min(chosen, key=lambda entry: (to_number(entry.sodium, float('inf')), entry.final_score)) # Isinstance (object, type) evaluates to True if r.calories is an integer or float, else False. If it's not a number, we treat it as infinity so it won't be chosen as the best option.
         console.print(
-            f"\n  \N{Trophy} [bold green]Option with less sodium: "
+            f"\n  \N{Trophy} [bold green]Option with less sodium (or higher score): "
             f"{best.name} (Sodium: {best.sodium})[/bold green]\n")
     elif choice == "F":
-        best = max(chosen, key=lambda entry: entry.data.get("Dietary_Fiber", 0) if isinstance(entry.data.get("Dietary_Fiber", 0), (int, float)) else 0)
+        best = max(chosen, key=lambda entry: (to_number(entry.data.get("Dietary_Fiber"), 0), entry.final_score)) # we use to_number to extract the number of dietary fiber, if it's not a number we treat it as 0 so it won't be chosen as the best option. In case of a tie in dietary fiber, we choose the one with the higher score.
         console.print(
-            f"\n  \N{Trophy} [bold green]Option with more dietary fiber: "
+            f"\n  \N{Trophy} [bold green]Option with more dietary fiber (or higher score): "
             f"{best.name} (Dietary Fiber: {best.data.get('Dietary_Fiber', 'N/A')} grams)[/bold green]\n")
 
 # Step 0: Main Loop
@@ -399,7 +427,7 @@ def main():
     history = [] # store the history of searched recipes in this session
 
     while True:
-        search = input("Which recipe would you like to search? (or 'q' to quit): ").strip() # we strip so that we can still look for a match even
+        search = input("\nWhich recipe would you like to search? (or 'q' to quit): ").strip() # we strip so that we can still look for a match even
                                                                                             # if the user added a space at the beginnig by accident
         if search.lower() == "q" or search.lower() == "quit" or search.lower() == "no" or search.lower() == "n":
             console.print("[bold light_slate_blue]\nGoodbye![/bold light_slate_blue]")
@@ -424,7 +452,7 @@ def main():
 
         if len(history) >= 2:
             while True:
-                comparision_setup = input("\nWould you like to compare all searched recipes so far Type 'y' for yes, anything else for no.\n")
+                comparision_setup = input("\nWould you like to compare all searched recipes so far? Type 'y' for yes, anything else for no.\n")
                 if comparision_setup.lower() != "y":
                     break
                 # Show numbered list of searched recipes. Let the user chose
@@ -432,7 +460,7 @@ def main():
                     chosen = [] # if there are more than 2 recipes, the user choose which ones to compare
                     console.print("\nRecipes searched so far:")
                     for i, hist_entry in enumerate(history):
-                        console.print(f"  {i+1}. {entry.name}")
+                        console.print(f"  {i+1}. {hist_entry.name}")
                     # The student/user decides which to compare
                     while True:
                         choice_compare = input("\nEnter the number of the recipes you want to compare (e.g. 1,2, etc.) ").strip()
@@ -442,10 +470,9 @@ def main():
                         # wee check that the number is between 1 and the length of the history list (inclusive)
                         if not all(index.strip().isdigit() and 1 <= int(index.strip()) <= len(history)
                                    for index in choice_compare_index):
-                            console.print("f[red]Invalid input. Please enter valid number between 1 and {len(history)}[/red]")
+                            console.print(f"[red]Invalid input. Please enter valid number between 1 and {len(history)}[/red]")
                             continue
-
-                        chosen = [] # reset after each attempt
+                        chosen = []
                         for index in choice_compare_index:
                             chosen.append(history[int(index.strip())-1])
                         if len(chosen) >= 2:
